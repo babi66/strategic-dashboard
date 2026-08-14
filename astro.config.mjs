@@ -1,15 +1,13 @@
-// astro.config.mjs
 import { defineConfig } from 'astro/config';
-import tailwindcss from '@tailwindcss/vite';
-import node from '@astrojs/node';
-
 import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server',
+  output: 'server', // or 'hybrid' depending on your setup
+  adapter: vercel(),
   vite: {
-    plugins: [tailwindcss()]
+    ssr: {
+      noExternal: ['firebase-admin', 'jwks-rsa'],
+    },
   },
-  adapter: vercel()
 });
