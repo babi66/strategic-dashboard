@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { appAuth } from "../../../firebase/server";
+import { getAppAuth } from "../../../firebase/server";
 
 export const POST: APIRoute = async ({ request, cookies }) => {
   const authHeader = request.headers.get("Authorization");
@@ -11,7 +11,8 @@ export const POST: APIRoute = async ({ request, cookies }) => {
   const expiresIn = 60 * 60 * 24 * 5 * 1000; // 5 days session cookie
 
   try {
-    const sessionCookie = await appAuth.createSessionCookie(idToken, { expiresIn });
+    const auth = getAppAuth();
+    const sessionCookie = await auth.createSessionCookie(idToken, { expiresIn });
     cookies.set("__session", sessionCookie, {
       path: "/",
       httpOnly: true,
