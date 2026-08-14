@@ -1,0 +1,164 @@
+---
+import '../styles/global.css';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Strategic Horizon Plan 2026–2029 | Comboni Catholic Secondary School</title>
+  </head>
+  <body class="min-h-screen font-sans antialiased relative flex items-center justify-center p-4 sm:p-8 bg-slate-900">
+
+    <!-- Full-Screen School Background Image -->
+    <div class="fixed inset-0 z-0">
+      <img 
+        src="/images/comboni-campus.jpg" 
+        alt="Comboni Catholic Secondary School" 
+        class="w-full h-full object-cover object-center"
+        onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=80&w=1600&auto=format&fit=crop';"
+      />
+      <!-- Dimmed Overlay for Contrast -->
+      <div class="absolute inset-0 bg-slate-950/50"></div>
+    </div>
+
+    <!-- TOP-LEFT CORNER SCHOOL BRANDING -->
+    <div class="fixed top-4 left-4 sm:top-6 sm:left-6 z-20 flex items-center gap-3 bg-slate-950/70 backdrop-blur-md p-2.5 sm:p-3 pr-4 sm:pr-5 rounded-2xl border border-white/20 shadow-xl">
+      <img src="/images/logo2.png" class="h-10 w-10 sm:h-15 sm:w-15 object-contain" /> 
+      
+      <div>
+        <span class="text-[10px] sm:text-xs font-extrabold uppercase tracking-widest text-blue-300 block">
+          Apostolic Vicariate of Hawassa
+        </span>
+        <h2 class="text-xs sm:text-sm font-black text-white leading-tight">
+          Comboni Catholic Secondary School
+        </h2>
+      </div>
+    </div>
+
+    <!-- Centered Transparent Glassmorphism Card (Wider Layout) -->
+    <main class="relative z-10 w-full max-w-2xl bg-white/85 backdrop-blur-md rounded-3xl shadow-2xl border-4 border-white/60 p-8 sm:p-12 space-y-8 my-auto mt-20 sm:mt-auto">
+      
+      <!-- Institutional Heading Block -->
+      <div class="text-center space-y-3">
+        <!-- School Name Title -->
+        <div class="space-y-1">
+          <span class="text-xs sm:text-sm font-extrabold tracking-widest text-blue-950 uppercase block">
+            Executive Portal
+          </span>
+          <h1 class="text-2xl sm:text-4xl font-black text-slate-950 tracking-tight leading-tight">
+            Comboni Catholic Secondary School
+          </h1>
+        </div>
+
+        <!-- Strategic Plan Title Badge -->
+        <div class="pt-2">
+          <span class="inline-block px-5 py-2 bg-blue-900 text-white font-black text-base sm:text-lg rounded-full border border-blue-800 shadow-md">
+            Strategic Horizon Plan 2026–2029
+          </span>
+        </div>
+      </div>
+
+      <!-- Alert Container for Login Errors -->
+      <div 
+        id="error-message" 
+        class="hidden p-4 bg-red-100 border-2 border-red-600 text-red-950 text-base font-bold rounded-xl text-center shadow-md" 
+        role="alert"
+      ></div>
+
+      <!-- Login Form -->
+      <form id="login-form" class="space-y-6">
+        
+        <!-- Email Input -->
+        <div class="space-y-2">
+          <label for="email" class="block text-base sm:text-lg font-black text-slate-950 uppercase tracking-wide">
+            Email Address
+          </label>
+          <input 
+            type="email" 
+            id="email" 
+            required 
+            class="w-full px-5 py-4 bg-white/90 border-2 border-slate-400 rounded-xl text-slate-950 text-xl font-bold placeholder-slate-500 focus:outline-none focus:border-blue-900 focus:bg-white transition-all shadow-sm" 
+            placeholder="admin@comboni.edu.et" 
+            autocomplete="email"
+          />
+        </div>
+
+        <!-- Password Input -->
+        <div class="space-y-2">
+          <label for="password" class="block text-base sm:text-lg font-black text-slate-950 uppercase tracking-wide">
+            Password
+          </label>
+          <input 
+            type="password" 
+            id="password" 
+            required 
+            class="w-full px-5 py-4 bg-white/90 border-2 border-slate-400 rounded-xl text-slate-950 text-xl font-bold placeholder-slate-500 focus:outline-none focus:border-blue-900 focus:bg-white transition-all shadow-sm" 
+            placeholder="••••••••" 
+            autocomplete="current-password"
+          />
+        </div>
+
+        <!-- High-Contrast Submit Button -->
+        <button 
+          type="submit" 
+          id="submit-btn" 
+          class="w-full py-4.5 px-6 bg-blue-900 hover:bg-blue-800 active:bg-blue-950 text-white text-xl sm:text-2xl font-black rounded-xl transition-all shadow-xl active:scale-[0.99] cursor-pointer mt-4 border-2 border-blue-950"
+        >
+          Sign In
+        </button>
+      </form>
+
+      <!-- Simple Footer -->
+      <div class="pt-2 text-center border-t border-slate-950/20">
+        <p class="text-xs sm:text-sm font-black text-slate-800 uppercase tracking-wider">
+          Executive Boardroom Access
+        </p>
+      </div>
+
+    </main>
+
+    <!-- Client Script -->
+    <script>
+      import { auth } from "../firebase/client";
+      import { signInWithEmailAndPassword } from "firebase/auth";
+
+      const form = document.getElementById("login-form") as HTMLFormElement;
+      const errorEl = document.getElementById("error-message") as HTMLDivElement;
+      const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
+
+      form?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        errorEl.classList.add("hidden");
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Authenticating...";
+
+        const email = (document.getElementById("email") as HTMLInputElement).value;
+        const password = (document.getElementById("password") as HTMLInputElement).value;
+
+        try {
+          const userCredential = await signInWithEmailAndPassword(auth, email, password);
+          const idToken = await userCredential.user.getIdToken();
+
+          const res = await fetch("/api/auth/signin", {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${idToken}`,
+            },
+          });
+
+          if (res.ok) {
+            window.location.href = "/dashboard";
+          } else {
+            throw new Error("Failed to establish secure session.");
+          }
+        } catch (err: any) {
+          errorEl.textContent = err.message || "Invalid email or password.";
+          errorEl.classList.remove("hidden");
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Sign In";
+        }
+      });
+    </script>
+  </body>
+</html>
