@@ -7,18 +7,7 @@ export default defineConfig({
   adapter: vercel(),
   vite: {
     ssr: {
-      noExternal: [
-        'firebase-admin',
-        'firebase-admin/app',
-        'firebase-admin/auth',
-        'jwks-rsa',
-        'jose',
-      ],
-    },
-    build: {
-      commonjsOptions: {
-        transformMixedEsModules: true,
-      },
+      external: ['firebase-admin'],
     },
   },
 });
