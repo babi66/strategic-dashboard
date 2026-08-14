@@ -1,39 +1,26 @@
-import { initializeApp, cert, getApps, getApp } from "firebase-admin/app";
-import { getAuth, type Auth } from "firebase-admin/auth";
-import fs from "node:fs";
-import path from "node:path";
+// src/firebase/server.ts
+import { initializeApp, cert, getApps } from "firebase-admin/app";
+import { getAuth } from "firebase-admin/auth";
 
-function initFirebaseAdmin() {
-  if (getApps().length > 0) {
-    return getApp();
-  }
+const activeApps = getApps();
 
-  const filePath = path.resolve(process.cwd(), "service-account.json");
+// Handle line breaks in Vercel's private key format
+const privateKey = process.env.FIREBASE_PRIVATE_KEY
+  ? process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n")
+  : undefined;
 
-  if (!fs.existsSync(filePath)) {
-    throw new Error("service-account.json file not found in project root directory.");
-  }
+const serviceAccount = {
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+  privateKey: privateKey,
+};
 
-  try {
-    const fileContent = fs.readFileSync(filePath, "utf-8");
-    const serviceAccount = JSON.parse(fileContent);
+// Initialize Firebase Admin only if not already initialized
+export const app =
+  activeApps.length === 0
+    ? initializeApp({
+        credential: cert(serviceAccount),
+      })
+    : activeApps[0];
 
-    return initializeApp({
-      credential: cert(serviceAccount),
-    });
-  } catch (error: any) {
-    console.error("Error reading service-account.json:", error.message);
-    throw error;
-  }
-}
-
-let appAuth: Auth;
-
-try {
-  const app = initFirebaseAdmin();
-  appAuth = getAuth(app);
-} catch (e) {
-  appAuth = {} as Auth;
-}
-
-export { appAuth };
+export const serverAuth = getAuth(app);
