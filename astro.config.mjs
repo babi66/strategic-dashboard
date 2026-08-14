@@ -3,11 +3,12 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server', // or 'hybrid' depending on your setup
+  output: 'server',
   adapter: vercel(),
   vite: {
     ssr: {
-      noExternal: ['firebase-admin', 'jwks-rsa'],
+      external: ['firebase-admin'],
+      noExternal: ['jwks-rsa', 'jose'],
     },
   },
 });
