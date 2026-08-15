@@ -1,9 +1,23 @@
 ---
 import '../../styles/global.css';
+import { getAppAuth } from "../../firebase/server"; // Ensure path matches your server setup
 
-// Verification check for authenticated admin session
+// 1. Force server-side rendering on every request
+export const prerender = false;
+
+// 2. Read the session cookie
 const sessionCookie = Astro.cookies.get("__session")?.value;
+
 if (!sessionCookie) {
+  return Astro.redirect("/login");
+}
+
+// 3. Verify cookie validity with Firebase Admin
+try {
+  const auth = getAppAuth();
+  await auth.verifySessionCookie(sessionCookie, true);
+} catch (error) {
+  Astro.cookies.delete("__session", { path: "/" });
   return Astro.redirect("/login");
 }
 ---

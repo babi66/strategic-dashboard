@@ -22,7 +22,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     cookies.set("__session", sessionCookie, {
       path: "/",
       httpOnly: true,
-      secure: true,
+      secure: import.meta.env.PROD, // Only enforce HTTPS in production
       sameSite: "lax",
       maxAge: expiresIn / 1000,
     });
