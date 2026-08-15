@@ -1,21 +1,22 @@
 import type { APIRoute } from "astro";
 import { getAppAuth } from "../../../firebase/server";
 
-export const prerender = false; // Ensures server-side handling on Vercel
+export const prerender = false;
 
 export const POST: APIRoute = async ({ request, cookies }) => {
   try {
     const auth = getAppAuth();
-    const idToken = request.headers.get("Authorization")?.split("Bearer ")[1];
+    const authorization = request.headers.get("Authorization");
+    const idToken = authorization?.split("Bearer ")[1];
 
     if (!idToken) {
       return new Response(JSON.stringify({ error: "No token provided" }), {
         status: 401,
+        headers: { "Content-Type": "application/json" },
       });
     }
 
-    // Create session cookie (5 days duration)
-    const expiresIn = 60 * 60 * 24 * 5 * 1000;
+    const expiresIn = 60 * 60 * 24 * 5 * 1000; // 5 days
     const sessionCookie = await auth.createSessionCookie(idToken, { expiresIn });
 
     cookies.set("__session", sessionCookie, {
@@ -26,8 +27,18 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       maxAge: expiresIn / 1000,
     });
 
-    return new Response(JSON.stringify({ status: "success" }), { status: 200 });
+    return new Response(JSON.stringify({ status: "success" }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (error: any) {
-    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+    console.error("--- FIREBASE ADMIN ERROR ---", error);
+    return new Response(
+      JSON.stringify({ error: error.message || "Internal Server Error" }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   }
 };
