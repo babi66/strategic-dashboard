@@ -32,51 +32,108 @@ try {
 
     <!-- TOP NAVIGATION BAR (Full Width) -->
     <header class="sticky top-0 z-50 bg-blue-950 text-white shadow-2xl border-b-4 border-blue-800 w-full">
-  <div class="w-full px-6 sm:px-12 py-5 flex items-center justify-between">
+  <div class="w-full px-4 sm:px-12 py-3 sm:py-5 flex items-center justify-between gap-4">
     
     <!-- Identity Header -->
-    <div class="flex items-center gap-4">
-      <div class="h-14 w-14 rounded-2xl bg-blue-800 border-2 border-blue-400/40 flex items-center justify-center font-black text-2xl text-white shadow-lg shrink-0">
+    <div class="flex items-center gap-3 sm:gap-4">
+      <div class="h-10 w-10 sm:h-14 sm:w-14 rounded-xl sm:rounded-2xl bg-blue-800 border-2 border-blue-400/40 flex items-center justify-center font-black text-base sm:text-2xl text-white shadow-lg shrink-0">
         CSSS
       </div>
       <div>
-        <span class="text-xs font-black uppercase tracking-widest text-blue-300 block mb-0.5">
+        <span class="text-[10px] sm:text-xs font-black uppercase tracking-widest text-blue-300 block mb-0.5">
           Apostolic Vicariate of Hawassa
         </span>
-        <h1 class="text-xl sm:text-2xl font-black text-white tracking-tight leading-none">
+        <h1 class="text-base sm:text-xl lg:text-2xl font-black text-white tracking-tight leading-snug sm:leading-none">
           Comboni Catholic Senior Secondary School
         </h1>
       </div>
     </div>
 
-    <!-- Document Reference Badge & Navigation -->
-    <div class="flex items-center gap-4 sm:gap-6">
+    <!-- Desktop Navigation & Reference Badge -->
+    <div class="hidden md:flex items-center gap-4 lg:gap-6">
       <div class="hidden xl:inline-flex items-center px-6 py-2 bg-blue-900 rounded-full border border-blue-700 text-blue-100 font-black text-sm uppercase tracking-wider shadow-inner">
         Ref. No: CCSSS/OPS-HR/2026/001
       </div>
-      
+
       <a 
         href="/dashboard" 
-        class="px-5 sm:px-6 py-3 bg-blue-800 hover:bg-blue-700 text-white font-black text-sm sm:text-base rounded-2xl transition-all duration-200 shadow-lg border-2 border-blue-500 hover:scale-105 flex items-center gap-2"
+        class="px-5 sm:px-6 py-2.5 sm:py-3 bg-blue-800 hover:bg-blue-700 text-white font-black text-sm sm:text-base rounded-xl sm:rounded-2xl transition-all duration-200 shadow-lg border-2 border-blue-500 hover:scale-105 flex items-center gap-2"
       >
         <span>←</span>
-        <span>Core Dashboard</span>
+        <span class="whitespace-nowrap">Core Dashboard</span>
       </a>
 
       <!-- Functional Logout Button -->
       <button 
         type="button"
         id="logout-btn" 
-        class="px-5 sm:px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-black text-sm sm:text-base rounded-2xl transition-all duration-200 shadow-lg border-2 border-red-400 hover:scale-105 flex items-center gap-2 shrink-0 cursor-pointer"
+        class="px-5 sm:px-6 py-2.5 sm:py-3 bg-red-600 hover:bg-red-700 text-white font-black text-sm sm:text-base rounded-xl sm:rounded-2xl transition-all duration-200 shadow-lg border-2 border-red-400 hover:scale-105 flex items-center gap-2 shrink-0 cursor-pointer"
       >
         <span>Logout</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Hamburger Button -->
+    <button 
+      type="button" 
+      id="menu-toggle" 
+      class="md:hidden p-2 rounded-xl bg-blue-900 border-2 border-blue-700 text-blue-200 hover:text-white focus:outline-none shrink-0"
+      aria-label="Toggle Menu"
+    >
+      <svg id="menu-icon-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg id="menu-icon-close" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-blue-900/80 bg-blue-950/95 backdrop-blur-lg px-4 py-4 space-y-3">
+    <div class="text-[11px] font-black uppercase tracking-wider text-blue-300 px-2">
+      Ref. No: CCSSS/OPS-HR/2026/001
+    </div>
+    
+    <div class="flex flex-col gap-2 pt-1">
+      <a 
+        href="/dashboard" 
+        class="w-full px-4 py-2.5 bg-blue-800 hover:bg-blue-700 text-white font-black text-sm rounded-xl transition-all duration-200 border border-blue-500 flex items-center justify-center gap-2"
+      >
+        <span>←</span>
+        <span>Core Dashboard</span>
+      </a>
+
+      <button 
+        type="button"
+        id="logout-btn-mobile" 
+        class="w-full px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white font-black text-sm rounded-xl transition-all duration-200 border border-red-400 flex items-center justify-center gap-2 cursor-pointer"
+      >
+        <span>Logout</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
           <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
         </svg>
       </button>
     </div>
   </div>
 </header>
+
+<script>
+  const toggleBtn = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  toggleBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+    iconOpen?.classList.toggle('hidden');
+    iconClose?.classList.toggle('hidden');
+  });
+</script>
 
 <script>
   import { auth } from "../../firebase/client"; // Adjust relative path if needed
@@ -103,286 +160,286 @@ try {
 </script>
 
     <!-- FULL-WIDTH DASHBOARD CONTENT CONTAINER -->
-    <main class="w-full px-6 sm:px-12 pt-12 space-y-20">
+    <main class="w-full px-4 sm:px-8 lg:px-12 pt-6 sm:pt-12 space-y-10 sm:space-y-20">
 
-      <!-- SECTION 1: REPORT HEADER & FORMAL SUBMISSION -->
-      <section class="w-full bg-white rounded-3xl p-8 sm:p-14 shadow-xl border-4 border-slate-200 flex flex-col xl:flex-row items-start xl:items-center justify-between gap-8 transition-all hover:border-blue-900">
-        <div class="space-y-4 max-w-5xl">
-          <div class="flex flex-wrap gap-3">
-            <span class="px-5 py-2 bg-blue-100 text-blue-950 rounded-full text-sm font-black uppercase tracking-widest border border-blue-300 shadow-sm">
-              90-Day Comprehensive Progress Report
-            </span>
-            <span class="px-5 py-2 bg-amber-100 text-amber-950 rounded-full text-sm font-black uppercase tracking-widest border border-amber-300 shadow-sm">
-              Diocesan Transition Phase
-            </span>
-          </div>
-          <h2 class="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight leading-tight">
-            Operational Stabilization & Strategic Development Proposal
-          </h2>
-          <p class="text-slate-600 text-lg sm:text-2xl font-bold leading-relaxed">
-            Target Authority: His Excellency, Bishop Meriha Kiristos Dr. Gobezayehu Yilma (Apostolic Vicariate of Hawassa)
-          </p>
-          <p class="text-slate-500 font-bold text-base sm:text-lg">
-            Reporting Officer: Mulugeta Moges Naramo (MBA, Operational & HR Administrator)
-          </p>
-        </div>
-        
-        <div class="bg-blue-950 text-white rounded-3xl p-8 text-left xl:text-right w-full xl:w-auto shrink-0 shadow-xl border-2 border-blue-800 space-y-2">
-          <span class="text-xs font-black uppercase tracking-widest text-blue-300 block">Transition Milestones</span>
-          <span class="text-2xl sm:text-3xl font-black text-white block">100% Asset Ledger Validated</span>
-          <span class="text-xs font-bold text-slate-300 block">AY 2025/2026 Reconciliation & 2026/2027 Launch</span>
-        </div>
-      </section>
+  <!-- SECTION 1: REPORT HEADER & FORMAL SUBMISSION -->
+  <section class="w-full bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-10 lg:p-14 shadow-xl border-2 sm:border-4 border-slate-200 flex flex-col xl:flex-row items-start xl:items-center justify-between gap-6 sm:gap-8 transition-all hover:border-blue-900">
+    <div class="space-y-3 sm:space-y-4 max-w-5xl">
+      <div class="flex flex-wrap gap-2 sm:gap-3">
+        <span class="px-3 sm:px-5 py-1.5 sm:py-2 bg-blue-100 text-blue-950 rounded-full text-xs sm:text-sm font-black uppercase tracking-wider sm:tracking-widest border border-blue-300 shadow-sm">
+          90-Day Comprehensive Progress Report
+        </span>
+        <span class="px-3 sm:px-5 py-1.5 sm:py-2 bg-amber-100 text-amber-950 rounded-full text-xs sm:text-sm font-black uppercase tracking-wider sm:tracking-widest border border-amber-300 shadow-sm">
+          Diocesan Transition Phase
+        </span>
+      </div>
+      <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight">
+        Operational Stabilization & Strategic Development Proposal
+      </h2>
+      <p class="text-slate-600 text-base sm:text-xl lg:text-2xl font-bold leading-relaxed">
+        Target Authority: His Excellency, Bishop Meriha Kiristos Dr. Gobezayehu Yilma (Apostolic Vicariate of Hawassa)
+      </p>
+      <p class="text-slate-500 font-bold text-xs sm:text-base lg:text-lg">
+        Reporting Officer: Mulugeta Moges Naramo (MBA, Operational & HR Administrator)
+      </p>
+    </div>
+    
+    <div class="bg-blue-950 text-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 text-left xl:text-right w-full xl:w-auto shrink-0 shadow-xl border-2 border-blue-800 space-y-1.5 sm:space-y-2">
+      <span class="text-[10px] sm:text-xs font-black uppercase tracking-widest text-blue-300 block">Transition Milestones</span>
+      <span class="text-xl sm:text-2xl lg:text-3xl font-black text-white block leading-snug">100% Asset Ledger Validated</span>
+      <span class="text-[11px] sm:text-xs font-bold text-slate-300 block">AY 2025/2026 Reconciliation & 2026/2027 Launch</span>
+    </div>
+  </section>
 
 
       <!-- SECTION 2: TRANSITION & AUDIT HIGHLIGHT CARDS (HOVERABLE) -->
-      <section class="w-full space-y-8">
-  <div class="flex items-center justify-between">
-    <h3 class="text-2xl sm:text-4xl font-black text-slate-950 tracking-tight uppercase">
+      <section class="w-full space-y-5 sm:space-y-8">
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+    <h3 class="text-xl sm:text-3xl lg:text-4xl font-black text-slate-950 tracking-tight uppercase">
       Initial 90-Day Operational Diagnostic
     </h3>
-    <span class="text-sm font-black text-slate-500 uppercase tracking-widest">
+    <span class="text-xs sm:text-sm font-black text-slate-500 uppercase tracking-widest">
       Key Execution Benchmarks
     </span>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 sm:gap-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 lg:gap-8">
     
     <!-- Metric 1: Asset Reconciliation -->
-    <div class="group bg-white rounded-3xl p-8 sm:p-10 shadow-lg border-4 border-slate-200 hover:border-blue-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl space-y-6 cursor-pointer">
-      <div class="flex items-center justify-between">
+    <div class="group bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-lg border-2 sm:border-4 border-slate-200 hover:border-blue-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl space-y-4 sm:space-y-6 cursor-pointer">
+      <div class="flex items-center justify-between gap-2">
         <span class="text-xs sm:text-sm font-black text-slate-500 uppercase tracking-widest group-hover:text-blue-900 transition-colors">
           Asset Inventory Ledger
         </span>
-        <span class="px-3.5 py-1.5 bg-emerald-100 text-emerald-950 font-black text-xs sm:text-sm rounded-xl border border-emerald-300">
+        <span class="px-2.5 sm:px-3.5 py-1 sm:py-1.5 bg-emerald-100 text-emerald-950 font-black text-[11px] sm:text-sm rounded-lg sm:rounded-xl border border-emerald-300 shrink-0">
           100% Verified
         </span>
       </div>
-      <div class="text-5xl sm:text-6xl font-black text-slate-950 group-hover:scale-105 transition-transform origin-left">
+      <div class="text-4xl sm:text-6xl font-black text-slate-950 group-hover:scale-105 transition-transform origin-left">
         100%
       </div>
-      <div class="space-y-2 pt-2 border-t border-slate-100">
-        <div class="flex justify-between text-xs font-black text-slate-600">
+      <div class="space-y-1.5 sm:space-y-2 pt-2 border-t border-slate-100">
+        <div class="flex justify-between text-[11px] sm:text-xs font-black text-slate-600">
           <span>Baseline: 35% Completed</span>
           <span>Audit Added: 65%</span>
         </div>
-        <div class="w-full bg-slate-200 h-4 rounded-full overflow-hidden">
+        <div class="w-full bg-slate-200 h-3 sm:h-4 rounded-full overflow-hidden">
           <div class="bg-emerald-600 h-full rounded-full w-[100%] transition-all duration-1000"></div>
         </div>
       </div>
     </div>
 
     <!-- Metric 2: Grade 9 Admission Crisis -->
-    <div class="group bg-white rounded-3xl p-8 sm:p-10 shadow-lg border-4 border-slate-200 hover:border-blue-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl space-y-6 cursor-pointer">
-      <div class="flex items-center justify-between">
+    <div class="group bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-lg border-2 sm:border-4 border-slate-200 hover:border-blue-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl space-y-4 sm:space-y-6 cursor-pointer">
+      <div class="flex items-center justify-between gap-2">
         <span class="text-xs sm:text-sm font-black text-slate-500 uppercase tracking-widest group-hover:text-blue-900 transition-colors">
           Grade 9 Intake Capacity
         </span>
-        <span class="px-3.5 py-1.5 bg-red-100 text-red-950 font-black text-xs sm:text-sm rounded-xl border border-red-300">
+        <span class="px-2.5 sm:px-3.5 py-1 sm:py-1.5 bg-red-100 text-red-950 font-black text-[11px] sm:text-sm rounded-lg sm:rounded-xl border border-red-300 shrink-0">
           63.5% Rejected
         </span>
       </div>
-      <div class="text-5xl sm:text-6xl font-black text-slate-950 group-hover:scale-105 transition-transform origin-left">
-        260 <span class="text-2xl font-bold text-slate-500">/ 712</span>
+      <div class="text-4xl sm:text-6xl font-black text-slate-950 group-hover:scale-105 transition-transform origin-left">
+        260 <span class="text-xl sm:text-2xl font-bold text-slate-500">/ 712</span>
       </div>
-      <div class="space-y-2 pt-2 border-t border-slate-100">
-        <div class="flex justify-between text-xs font-black text-slate-600">
+      <div class="space-y-1.5 sm:space-y-2 pt-2 border-t border-slate-100">
+        <div class="flex justify-between text-[11px] sm:text-xs font-black text-slate-600">
           <span>Admitted Intake Rate</span>
           <span>36.5%</span>
         </div>
-        <div class="w-full bg-slate-200 h-4 rounded-full overflow-hidden">
+        <div class="w-full bg-slate-200 h-3 sm:h-4 rounded-full overflow-hidden">
           <div class="bg-blue-900 h-full rounded-full w-[36.5%] transition-all duration-1000"></div>
         </div>
       </div>
     </div>
 
     <!-- Metric 3: Maintenance Budget Deficit -->
-    <div class="group bg-white rounded-3xl p-8 sm:p-10 shadow-lg border-4 border-slate-200 hover:border-blue-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl space-y-6 cursor-pointer">
-      <div class="flex items-center justify-between">
+    <div class="group bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-lg border-2 sm:border-4 border-slate-200 hover:border-blue-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl space-y-4 sm:space-y-6 cursor-pointer">
+      <div class="flex items-center justify-between gap-2">
         <span class="text-xs sm:text-sm font-black text-slate-500 uppercase tracking-widest group-hover:text-blue-900 transition-colors">
           Maintenance Authorized
         </span>
-        <span class="px-3.5 py-1.5 bg-amber-100 text-amber-950 font-black text-xs sm:text-sm rounded-xl border border-amber-300">
+        <span class="px-2.5 sm:px-3.5 py-1 sm:py-1.5 bg-amber-100 text-amber-950 font-black text-[11px] sm:text-sm rounded-lg sm:rounded-xl border border-amber-300 shrink-0">
           2/3 Funding Gap
         </span>
       </div>
-      <div class="text-5xl sm:text-6xl font-black text-slate-950 group-hover:scale-105 transition-transform origin-left">
+      <div class="text-4xl sm:text-6xl font-black text-slate-950 group-hover:scale-105 transition-transform origin-left">
         33.3%
       </div>
-      <div class="space-y-2 pt-2 border-t border-slate-100">
-        <div class="flex justify-between text-xs font-black text-slate-600">
+      <div class="space-y-1.5 sm:space-y-2 pt-2 border-t border-slate-100">
+        <div class="flex justify-between text-[11px] sm:text-xs font-black text-slate-600">
           <span>Unaddressed Asset Risk</span>
           <span>66.7% Gap</span>
         </div>
-        <div class="w-full bg-slate-200 h-4 rounded-full overflow-hidden">
+        <div class="w-full bg-slate-200 h-3 sm:h-4 rounded-full overflow-hidden">
           <div class="bg-amber-600 h-full rounded-full w-[33.3%] transition-all duration-1000"></div>
         </div>
       </div>
     </div>
 
     <!-- Metric 4: Faculty Evaluation & HR -->
-    <div class="group bg-white rounded-3xl p-8 sm:p-10 shadow-lg border-4 border-slate-200 hover:border-blue-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl space-y-6 cursor-pointer">
-      <div class="flex items-center justify-between">
+    <div class="group bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-lg border-2 sm:border-4 border-slate-200 hover:border-blue-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl space-y-4 sm:space-y-6 cursor-pointer">
+      <div class="flex items-center justify-between gap-2">
         <span class="text-xs sm:text-sm font-black text-slate-500 uppercase tracking-widest group-hover:text-blue-900 transition-colors">
           Teaching Staff Evaluated
         </span>
-        <span class="px-3.5 py-1.5 bg-purple-100 text-purple-950 font-black text-xs sm:text-sm rounded-xl border border-purple-300">
+        <span class="px-2.5 sm:px-3.5 py-1 sm:py-1.5 bg-purple-100 text-purple-950 font-black text-[11px] sm:text-sm rounded-lg sm:rounded-xl border border-purple-300 shrink-0">
           Full Evaluation
         </span>
       </div>
-      <div class="text-5xl sm:text-6xl font-black text-slate-950 group-hover:scale-105 transition-transform origin-left">
+      <div class="text-4xl sm:text-6xl font-black text-slate-950 group-hover:scale-105 transition-transform origin-left">
         28 / 28
       </div>
-      <div class="space-y-2 pt-2 border-t border-slate-100">
-        <div class="flex justify-between text-xs font-black text-slate-600">
+      <div class="space-y-1.5 sm:space-y-2 pt-2 border-t border-slate-100">
+        <div class="flex justify-between text-[11px] sm:text-xs font-black text-slate-600">
           <span>August HR Compliance Audit</span>
           <span>100% Complete</span>
         </div>
-        <div class="w-full bg-slate-200 h-4 rounded-full overflow-hidden">
+        <div class="w-full bg-slate-200 h-3 sm:h-4 rounded-full overflow-hidden">
           <div class="bg-purple-700 h-full rounded-full w-[100%] transition-all duration-1000"></div>
         </div>
       </div>
     </div>
 
     <!-- Metric 5: Total Student Body -->
-    <div class="group bg-white rounded-3xl p-8 sm:p-10 shadow-lg border-4 border-slate-200 hover:border-blue-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl space-y-6 cursor-pointer">
-      <div class="flex items-center justify-between">
+    <div class="group bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-lg border-2 sm:border-4 border-slate-200 hover:border-blue-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl space-y-4 sm:space-y-6 cursor-pointer">
+      <div class="flex items-center justify-between gap-2">
         <span class="text-xs sm:text-sm font-black text-slate-500 uppercase tracking-widest group-hover:text-blue-900 transition-colors">
           Total Student Body
         </span>
-        <span class="px-3.5 py-1.5 bg-blue-100 text-blue-950 font-black text-xs sm:text-sm rounded-xl border border-blue-300">
+        <span class="px-2.5 sm:px-3.5 py-1 sm:py-1.5 bg-blue-100 text-blue-950 font-black text-[11px] sm:text-sm rounded-lg sm:rounded-xl border border-blue-300 shrink-0">
           Active Roster
         </span>
       </div>
-      <div class="text-5xl sm:text-6xl font-black text-slate-950 group-hover:scale-105 transition-transform origin-left">
+      <div class="text-4xl sm:text-6xl font-black text-slate-950 group-hover:scale-105 transition-transform origin-left">
         835
       </div>
-      <div class="space-y-2 pt-2 border-t border-slate-100">
-        <div class="flex justify-between text-xs font-black text-slate-600">
+      <div class="space-y-1.5 sm:space-y-2 pt-2 border-t border-slate-100">
+        <div class="flex justify-between text-[11px] sm:text-xs font-black text-slate-600">
           <span>Enrolled AY 2025/2026</span>
           <span>100% Attending</span>
         </div>
-        <div class="w-full bg-slate-200 h-4 rounded-full overflow-hidden">
+        <div class="w-full bg-slate-200 h-3 sm:h-4 rounded-full overflow-hidden">
           <div class="bg-blue-800 h-full rounded-full w-[100%] transition-all duration-1000"></div>
         </div>
       </div>
     </div>
 
     <!-- Metric 6: Capacity Threshold -->
-    <div class="group bg-white rounded-3xl p-8 sm:p-10 shadow-lg border-4 border-slate-200 hover:border-blue-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl space-y-6 cursor-pointer">
-      <div class="flex items-center justify-between">
+    <div class="group bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-lg border-2 sm:border-4 border-slate-200 hover:border-blue-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl space-y-4 sm:space-y-6 cursor-pointer">
+      <div class="flex items-center justify-between gap-2">
         <span class="text-xs sm:text-sm font-black text-slate-500 uppercase tracking-widest group-hover:text-blue-900 transition-colors">
           Capacity Threshold
         </span>
-        <span class="px-3.5 py-1.5 bg-rose-100 text-rose-950 font-black text-xs sm:text-sm rounded-xl border border-rose-300">
+        <span class="px-2.5 sm:px-3.5 py-1 sm:py-1.5 bg-rose-100 text-rose-950 font-black text-[11px] sm:text-sm rounded-lg sm:rounded-xl border border-rose-300 shrink-0">
           Max Ceiling
         </span>
       </div>
-      <div class="text-5xl sm:text-6xl font-black text-slate-950 group-hover:scale-105 transition-transform origin-left">
+      <div class="text-4xl sm:text-6xl font-black text-slate-950 group-hover:scale-105 transition-transform origin-left">
         100%
       </div>
-      <div class="space-y-2 pt-2 border-t border-slate-100">
-        <div class="flex justify-between text-xs font-black text-slate-600">
+      <div class="space-y-1.5 sm:space-y-2 pt-2 border-t border-slate-100">
+        <div class="flex justify-between text-[11px] sm:text-xs font-black text-slate-600">
           <span>Classroom Load Limit</span>
           <span>Over-Capacity Risk</span>
         </div>
-        <div class="w-full bg-slate-200 h-4 rounded-full overflow-hidden">
+        <div class="w-full bg-slate-200 h-3 sm:h-4 rounded-full overflow-hidden">
           <div class="bg-rose-600 h-full rounded-full w-[100%] transition-all duration-1000"></div>
         </div>
       </div>
     </div>
 
     <!-- Metric 7: Self-Reliance Ratio -->
-    <div class="group bg-white rounded-3xl p-8 sm:p-10 shadow-lg border-4 border-slate-200 hover:border-blue-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl space-y-6 cursor-pointer">
-      <div class="flex items-center justify-between">
+    <div class="group bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-lg border-2 sm:border-4 border-slate-200 hover:border-blue-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl space-y-4 sm:space-y-6 cursor-pointer">
+      <div class="flex items-center justify-between gap-2">
         <span class="text-xs sm:text-sm font-black text-slate-500 uppercase tracking-widest group-hover:text-blue-900 transition-colors">
           Self-Reliance Ratio
         </span>
-        <span class="px-3.5 py-1.5 bg-teal-100 text-teal-950 font-black text-xs sm:text-sm rounded-xl border border-teal-300">
+        <span class="px-2.5 sm:px-3.5 py-1 sm:py-1.5 bg-teal-100 text-teal-950 font-black text-[11px] sm:text-sm rounded-lg sm:rounded-xl border border-teal-300 shrink-0">
           Commercial Target
         </span>
       </div>
-      <div class="text-5xl sm:text-6xl font-black text-slate-950 group-hover:scale-105 transition-transform origin-left">
+      <div class="text-4xl sm:text-6xl font-black text-slate-950 group-hover:scale-105 transition-transform origin-left">
         75.0%
       </div>
-      <div class="space-y-2 pt-2 border-t border-slate-100">
-        <div class="flex justify-between text-xs font-black text-slate-600">
+      <div class="space-y-1.5 sm:space-y-2 pt-2 border-t border-slate-100">
+        <div class="flex justify-between text-[11px] sm:text-xs font-black text-slate-600">
           <span>Internal Revenue Independence</span>
           <span>Target: 100%</span>
         </div>
-        <div class="w-full bg-slate-200 h-4 rounded-full overflow-hidden">
+        <div class="w-full bg-slate-200 h-3 sm:h-4 rounded-full overflow-hidden">
           <div class="bg-teal-600 h-full rounded-full w-[75%] transition-all duration-1000"></div>
         </div>
       </div>
     </div>
 
     <!-- Metric 8: Academic Pass Rate -->
-    <div class="group bg-white rounded-3xl p-8 sm:p-10 shadow-lg border-4 border-slate-200 hover:border-blue-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl space-y-6 cursor-pointer">
-      <div class="flex items-center justify-between">
+    <div class="group bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-lg border-2 sm:border-4 border-slate-200 hover:border-blue-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl space-y-4 sm:space-y-6 cursor-pointer">
+      <div class="flex items-center justify-between gap-2">
         <span class="text-xs sm:text-sm font-black text-slate-500 uppercase tracking-widest group-hover:text-blue-900 transition-colors">
           Academic Pass Rate
         </span>
-        <span class="px-3.5 py-1.5 bg-indigo-100 text-indigo-950 font-black text-xs sm:text-sm rounded-xl border border-indigo-300">
+        <span class="px-2.5 sm:px-3.5 py-1 sm:py-1.5 bg-indigo-100 text-indigo-950 font-black text-[11px] sm:text-sm rounded-lg sm:rounded-xl border border-indigo-300 shrink-0">
           Regional Distinction
         </span>
       </div>
-      <div class="text-5xl sm:text-6xl font-black text-slate-950 group-hover:scale-105 transition-transform origin-left">
+      <div class="text-4xl sm:text-6xl font-black text-slate-950 group-hover:scale-105 transition-transform origin-left">
         98.5%
       </div>
-      <div class="space-y-2 pt-2 border-t border-slate-100">
-        <div class="flex justify-between text-xs font-black text-slate-600">
+      <div class="space-y-1.5 sm:space-y-2 pt-2 border-t border-slate-100">
+        <div class="flex justify-between text-[11px] sm:text-xs font-black text-slate-600">
           <span>National Exam Benchmark</span>
           <span>Top Tier</span>
         </div>
-        <div class="w-full bg-slate-200 h-4 rounded-full overflow-hidden">
+        <div class="w-full bg-slate-200 h-3 sm:h-4 rounded-full overflow-hidden">
           <div class="bg-indigo-600 h-full rounded-full w-[98.5%] transition-all duration-1000"></div>
         </div>
       </div>
     </div>
 
     <!-- Metric 9: Capital Execution -->
-    <div class="group bg-white rounded-3xl p-8 sm:p-10 shadow-lg border-4 border-slate-200 hover:border-blue-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl space-y-6 cursor-pointer">
-      <div class="flex items-center justify-between">
+    <div class="group bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-lg border-2 sm:border-4 border-slate-200 hover:border-blue-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl space-y-4 sm:space-y-6 cursor-pointer">
+      <div class="flex items-center justify-between gap-2">
         <span class="text-xs sm:text-sm font-black text-slate-500 uppercase tracking-widest group-hover:text-blue-900 transition-colors">
           Capital Execution
         </span>
-        <span class="px-3.5 py-1.5 bg-sky-100 text-sky-950 font-black text-xs sm:text-sm rounded-xl border border-sky-300">
+        <span class="px-2.5 sm:px-3.5 py-1 sm:py-1.5 bg-sky-100 text-sky-950 font-black text-[11px] sm:text-sm rounded-lg sm:rounded-xl border border-sky-300 shrink-0">
           Phase 1 Progress
         </span>
       </div>
-      <div class="text-5xl sm:text-6xl font-black text-slate-950 group-hover:scale-105 transition-transform origin-left">
+      <div class="text-4xl sm:text-6xl font-black text-slate-950 group-hover:scale-105 transition-transform origin-left">
         45.0%
       </div>
-      <div class="space-y-2 pt-2 border-t border-slate-100">
-        <div class="flex justify-between text-xs font-black text-slate-600">
+      <div class="space-y-1.5 sm:space-y-2 pt-2 border-t border-slate-100">
+        <div class="flex justify-between text-[11px] sm:text-xs font-black text-slate-600">
           <span>Direct-Labor Projects</span>
           <span>On Schedule</span>
         </div>
-        <div class="w-full bg-slate-200 h-4 rounded-full overflow-hidden">
+        <div class="w-full bg-slate-200 h-3 sm:h-4 rounded-full overflow-hidden">
           <div class="bg-sky-600 h-full rounded-full w-[45%] transition-all duration-1000"></div>
         </div>
       </div>
     </div>
 
     <!-- Metric 10: Allocated Funds Expended -->
-    <div class="group bg-white rounded-3xl p-8 sm:p-10 shadow-lg border-4 border-slate-200 hover:border-blue-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl space-y-6 cursor-pointer">
-      <div class="flex items-center justify-between">
+    <div class="group bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-lg border-2 sm:border-4 border-slate-200 hover:border-blue-800 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl space-y-4 sm:space-y-6 cursor-pointer">
+      <div class="flex items-center justify-between gap-2">
         <span class="text-xs sm:text-sm font-black text-slate-500 uppercase tracking-widest group-hover:text-blue-900 transition-colors">
           Allocated Funds Expended
         </span>
-        <span class="px-3.5 py-1.5 bg-emerald-100 text-emerald-950 font-black text-xs sm:text-sm rounded-xl border border-emerald-300">
+        <span class="px-2.5 sm:px-3.5 py-1 sm:py-1.5 bg-emerald-100 text-emerald-950 font-black text-[11px] sm:text-sm rounded-lg sm:rounded-xl border border-emerald-300 shrink-0">
           Optimal Burn
         </span>
       </div>
-      <div class="text-5xl sm:text-6xl font-black text-slate-950 group-hover:scale-105 transition-transform origin-left">
+      <div class="text-4xl sm:text-6xl font-black text-slate-950 group-hover:scale-105 transition-transform origin-left">
         88.0%
       </div>
-      <div class="space-y-2 pt-2 border-t border-slate-100">
-        <div class="flex justify-between text-xs font-black text-slate-600">
+      <div class="space-y-1.5 sm:space-y-2 pt-2 border-t border-slate-100">
+        <div class="flex justify-between text-[11px] sm:text-xs font-black text-slate-600">
           <span>Q1/Q2 Budget Efficiency</span>
           <span>12% Remaining</span>
         </div>
-        <div class="w-full bg-slate-200 h-4 rounded-full overflow-hidden">
+        <div class="w-full bg-slate-200 h-3 sm:h-4 rounded-full overflow-hidden">
           <div class="bg-emerald-600 h-full rounded-full w-[88%] transition-all duration-1000"></div>
         </div>
       </div>
@@ -391,196 +448,196 @@ try {
   </div>
 </section>
 
-
       <!-- IMAGE ANCHOR DIVIDER 1: ADMISSIONS CRISIS & DEMAND -->
-      <section class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white h-80 sm:h-96 w-full">
-        <img 
-          src="/images/comboni-admissions.jpg" 
-          alt="Comboni Entrance Examination Applicants" 
-          class="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
-          onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=1600&auto=format&fit=crop';"
-        />
-        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/70 to-transparent flex items-center p-8 sm:p-16">
-          <div class="max-w-3xl space-y-4 text-white">
-            <span class="px-4 py-1.5 bg-blue-600 font-black text-xs sm:text-sm uppercase tracking-widest rounded-lg shadow-md">
-              Market Validation
-            </span>
-            <h3 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-              462 Rejected Applicants: Commercial Proof of Demand
-            </h3>
-            <p class="text-slate-200 text-base sm:text-xl font-bold">
-              Unprecedented regional demand demonstrates the immediate necessity for donor-funded classroom expansions.
-            </p>
-          </div>
-        </div>
-      </section>
+      <!-- BANNER SECTION -->
+<section class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-2 sm:border-4 border-white h-64 sm:h-80 lg:h-96 w-full">
+  <img 
+    src="/images/comboni-admissions.jpg" 
+    alt="Comboni Entrance Examination Applicants" 
+    class="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700"
+    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=1600&auto=format&fit=crop';"
+  />
+  <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/70 to-transparent flex items-center p-5 sm:p-10 lg:p-16">
+    <div class="max-w-3xl space-y-2 sm:space-y-4 text-white">
+      <span class="px-3 sm:px-4 py-1 sm:py-1.5 bg-blue-600 font-black text-[10px] sm:text-xs lg:text-sm uppercase tracking-wider sm:tracking-widest rounded-lg shadow-md inline-block">
+        Market Validation
+      </span>
+      <h3 class="text-xl sm:text-3xl lg:text-5xl font-black tracking-tight leading-tight">
+        462 Rejected Applicants: Commercial Proof of Demand
+      </h3>
+      <p class="text-slate-200 text-xs sm:text-base lg:text-xl font-bold leading-snug sm:leading-normal">
+        Unprecedented regional demand demonstrates the immediate necessity for donor-funded classroom expansions.
+      </p>
+    </div>
+  </div>
+</section>
 
 
-      <!-- SECTION 3: URGENT INSTITUTIONAL RISKS & COMPLIANCE GAPS -->
-      <section class="w-full bg-white rounded-3xl p-8 sm:p-14 shadow-2xl border-4 border-slate-200 space-y-12">
+<!-- SECTION 3: URGENT INSTITUTIONAL RISKS & COMPLIANCE GAPS -->
+<section class="w-full bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-10 lg:p-14 shadow-2xl border-2 sm:border-4 border-slate-200 space-y-8 sm:space-y-12">
   <div>
-    <span class="px-6 py-2.5 bg-red-100 text-red-950 rounded-full text-base font-black uppercase tracking-widest border-2 border-red-300 shadow-md inline-block mb-4">
+    <span class="px-4 sm:px-6 py-1.5 sm:py-2.5 bg-red-100 text-red-950 rounded-full text-xs sm:text-base font-black uppercase tracking-wider sm:tracking-widest border border-red-300 shadow-md inline-block mb-3 sm:mb-4">
       Critical Vulnerabilities
     </span>
-    <h3 class="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight uppercase leading-tight">
+    <h3 class="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight uppercase leading-tight">
       Urgent Operational & Regulatory Compliance Gaps
     </h3>
-    <p class="text-slate-700 font-extrabold text-lg sm:text-2xl mt-2">
+    <p class="text-slate-700 font-extrabold text-sm sm:text-xl lg:text-2xl mt-2">
       Diagnostic audit findings requiring direct episcopal authorization and strategic intervention.
     </p>
   </div>
 
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10">
     
     <!-- Risk 1: Canonical & Brand Identity -->
-    <div class="bg-gradient-to-br from-slate-50 via-white to-red-50/40 rounded-3xl p-10 sm:p-12 border-4 border-slate-300 hover:border-red-600 transition-all duration-300 shadow-lg hover:shadow-2xl space-y-8 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-center justify-between gap-4 flex-wrap">
-          <div class="flex items-center gap-4">
-            <span class="h-14 w-14 rounded-2xl bg-red-600 text-white font-black text-xl flex items-center justify-center shadow-lg shrink-0">
+    <div class="bg-gradient-to-br from-slate-50 via-white to-red-50/40 rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-12 border-2 sm:border-4 border-slate-300 hover:border-red-600 transition-all duration-300 shadow-lg hover:shadow-2xl space-y-6 sm:space-y-8 flex flex-col justify-between group">
+      <div class="space-y-4 sm:space-y-6">
+        <div class="flex items-center justify-between gap-3 flex-wrap">
+          <div class="flex items-center gap-3 sm:gap-4">
+            <span class="h-10 w-10 sm:h-14 sm:w-14 rounded-xl sm:rounded-2xl bg-red-600 text-white font-black text-base sm:text-xl flex items-center justify-center shadow-lg shrink-0">
               01
             </span>
-            <span class="text-base sm:text-lg font-black text-red-700 uppercase tracking-widest">
+            <span class="text-xs sm:text-base lg:text-lg font-black text-red-700 uppercase tracking-widest">
               Canonical & Brand Identity
             </span>
           </div>
-          <span class="px-5 py-2 bg-red-100 text-red-950 text-sm font-black rounded-2xl border-2 border-red-300 shadow-sm">
+          <span class="px-3 sm:px-5 py-1 sm:py-2 bg-red-100 text-red-950 text-xs sm:text-sm font-black rounded-xl sm:rounded-2xl border border-red-300 shadow-sm">
             Canon 803 Exposure
           </span>
         </div>
 
-        <h4 class="text-3xl sm:text-4xl font-black text-slate-950 group-hover:text-red-950 transition-colors leading-tight">
+        <h4 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 group-hover:text-red-950 transition-colors leading-tight">
           Legacy Name & Omission of Catholic Identity
         </h4>
 
-        <div class="p-6 bg-white/90 rounded-3xl border-3 border-red-100 shadow-inner space-y-3">
-          <p class="text-slate-800 font-extrabold text-lg sm:text-xl leading-relaxed">
+        <div class="p-4 sm:p-6 bg-white/90 rounded-2xl sm:rounded-3xl border-2 sm:border-3 border-red-100 shadow-inner space-y-3">
+          <p class="text-slate-800 font-extrabold text-sm sm:text-lg lg:text-xl leading-relaxed">
             Stamp and signpost (<span class="italic text-slate-950">tapela</span>) bear the legacy congregational name and <strong class="text-red-700 font-black underline decoration-red-400">omit "Catholic"</strong>.
           </p>
         </div>
       </div>
 
-      <div class="pt-6 border-t-4 border-dashed border-red-200 space-y-3">
-        <span class="text-xs font-black uppercase tracking-widest text-red-800 block">Required Episcopal Action</span>
-        <div class="p-5 bg-red-600 text-white rounded-2xl text-base sm:text-lg font-black flex items-center gap-3 shadow-md">
-          <span class="text-2xl">➔</span>
+      <div class="pt-4 sm:pt-6 border-t-2 sm:border-t-4 border-dashed border-red-200 space-y-2 sm:space-y-3">
+        <span class="text-[10px] sm:text-xs font-black uppercase tracking-widest text-red-800 block">Required Episcopal Action</span>
+        <div class="p-3.5 sm:p-5 bg-red-600 text-white rounded-xl sm:rounded-2xl text-xs sm:text-base lg:text-lg font-black flex items-center gap-2 sm:gap-3 shadow-md">
+          <span class="text-lg sm:text-2xl">➔</span>
           <span>Update official corporate identity to <strong class="text-yellow-300 font-black">"Comboni Catholic Senior Secondary School"</strong></span>
         </div>
       </div>
     </div>
 
     <!-- Risk 2: Infrastructure Deficit -->
-    <div class="bg-gradient-to-br from-slate-50 via-white to-red-50/40 rounded-3xl p-10 sm:p-12 border-4 border-slate-300 hover:border-red-600 transition-all duration-300 shadow-lg hover:shadow-2xl space-y-8 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-center justify-between gap-4 flex-wrap">
-          <div class="flex items-center gap-4">
-            <span class="h-14 w-14 rounded-2xl bg-red-600 text-white font-black text-xl flex items-center justify-center shadow-lg shrink-0">
+    <div class="bg-gradient-to-br from-slate-50 via-white to-red-50/40 rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-12 border-2 sm:border-4 border-slate-300 hover:border-red-600 transition-all duration-300 shadow-lg hover:shadow-2xl space-y-6 sm:space-y-8 flex flex-col justify-between group">
+      <div class="space-y-4 sm:space-y-6">
+        <div class="flex items-center justify-between gap-3 flex-wrap">
+          <div class="flex items-center gap-3 sm:gap-4">
+            <span class="h-10 w-10 sm:h-14 sm:w-14 rounded-xl sm:rounded-2xl bg-red-600 text-white font-black text-base sm:text-xl flex items-center justify-center shadow-lg shrink-0">
               02
             </span>
-            <span class="text-base sm:text-lg font-black text-red-700 uppercase tracking-widest">
+            <span class="text-xs sm:text-base lg:text-lg font-black text-red-700 uppercase tracking-widest">
               Infrastructure Deficit
             </span>
           </div>
-          <span class="px-5 py-2 bg-red-100 text-red-950 text-sm font-black rounded-2xl border-2 border-red-300 shadow-sm">
+          <span class="px-3 sm:px-5 py-1 sm:py-2 bg-red-100 text-red-950 text-xs sm:text-sm font-black rounded-xl sm:rounded-2xl border border-red-300 shadow-sm">
             0% Dining Baseline
           </span>
         </div>
 
-        <h4 class="text-3xl sm:text-4xl font-black text-slate-950 group-hover:text-red-950 transition-colors leading-tight">
+        <h4 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 group-hover:text-red-950 transition-colors leading-tight">
           Dining Facility & Accessibility Deficit
         </h4>
 
-        <div class="p-6 bg-white/90 rounded-3xl border-3 border-red-100 shadow-inner space-y-3">
-          <p class="text-slate-800 font-extrabold text-lg sm:text-xl leading-relaxed">
-            Zero sheltered dining space forces <strong class="bg-red-200 text-red-950 px-3 py-1 rounded-xl font-black text-2xl border border-red-300">800 students</strong> to eat in academic classrooms or remain exposed to rainy-season hazards.
+        <div class="p-4 sm:p-6 bg-white/90 rounded-2xl sm:rounded-3xl border-2 sm:border-3 border-red-100 shadow-inner space-y-3">
+          <p class="text-slate-800 font-extrabold text-sm sm:text-lg lg:text-xl leading-relaxed">
+            Zero sheltered dining space forces <strong class="bg-red-200 text-red-950 px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg sm:rounded-xl font-black text-base sm:text-2xl border border-red-300">800 students</strong> to eat in academic classrooms or remain exposed to rainy-season hazards.
           </p>
         </div>
       </div>
 
-      <div class="grid grid-cols-2 gap-4 pt-6 border-t-4 border-dashed border-red-200">
-        <div class="p-5 bg-white rounded-2xl border-2 border-slate-300 text-center shadow-sm">
-          <span class="text-xs font-black uppercase text-slate-500 block">Sheltered Dining</span>
-          <span class="text-2xl font-black text-red-600">0 Facilities</span>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 pt-4 sm:pt-6 border-t-2 sm:border-t-4 border-dashed border-red-200">
+        <div class="p-3.5 sm:p-5 bg-white rounded-xl sm:rounded-2xl border-2 border-slate-300 text-center shadow-sm">
+          <span class="text-[10px] sm:text-xs font-black uppercase text-slate-500 block">Sheltered Dining</span>
+          <span class="text-lg sm:text-2xl font-black text-red-600">0 Facilities</span>
         </div>
-        <div class="p-5 bg-white rounded-2xl border-2 border-slate-300 text-center shadow-sm">
-          <span class="text-xs font-black uppercase text-slate-500 block">Disabled Accessibility</span>
-          <span class="text-2xl font-black text-red-600">25 Students Unserved</span>
+        <div class="p-3.5 sm:p-5 bg-white rounded-xl sm:rounded-2xl border-2 border-slate-300 text-center shadow-sm">
+          <span class="text-[10px] sm:text-xs font-black uppercase text-slate-500 block">Disabled Accessibility</span>
+          <span class="text-lg sm:text-2xl font-black text-red-600">25 Students Unserved</span>
         </div>
       </div>
     </div>
 
     <!-- Risk 3: Transport Deficit -->
-    <div class="bg-gradient-to-br from-slate-50 via-white to-red-50/40 rounded-3xl p-10 sm:p-12 border-4 border-slate-300 hover:border-red-600 transition-all duration-300 shadow-lg hover:shadow-2xl space-y-8 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-center justify-between gap-4 flex-wrap">
-          <div class="flex items-center gap-4">
-            <span class="h-14 w-14 rounded-2xl bg-red-600 text-white font-black text-xl flex items-center justify-center shadow-lg shrink-0">
+    <div class="bg-gradient-to-br from-slate-50 via-white to-red-50/40 rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-12 border-2 sm:border-4 border-slate-300 hover:border-red-600 transition-all duration-300 shadow-lg hover:shadow-2xl space-y-6 sm:space-y-8 flex flex-col justify-between group">
+      <div class="space-y-4 sm:space-y-6">
+        <div class="flex items-center justify-between gap-3 flex-wrap">
+          <div class="flex items-center gap-3 sm:gap-4">
+            <span class="h-10 w-10 sm:h-14 sm:w-14 rounded-xl sm:rounded-2xl bg-red-600 text-white font-black text-base sm:text-xl flex items-center justify-center shadow-lg shrink-0">
               03
             </span>
-            <span class="text-base sm:text-lg font-black text-red-700 uppercase tracking-widest">
+            <span class="text-xs sm:text-base lg:text-lg font-black text-red-700 uppercase tracking-widest">
               Transport Deficit
             </span>
           </div>
-          <span class="px-5 py-2 bg-red-100 text-red-950 text-sm font-black rounded-2xl border-2 border-red-300 shadow-sm">
+          <span class="px-3 sm:px-5 py-1 sm:py-2 bg-red-100 text-red-950 text-xs sm:text-sm font-black rounded-xl sm:rounded-2xl border border-red-300 shadow-sm">
             0 Vehicles On-Site
           </span>
         </div>
 
-        <h4 class="text-3xl sm:text-4xl font-black text-slate-950 group-hover:text-red-950 transition-colors leading-tight">
+        <h4 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 group-hover:text-red-950 transition-colors leading-tight">
           Zero-Vehicle Fleet Status
         </h4>
 
-        <div class="p-6 bg-white/90 rounded-3xl border-3 border-red-100 shadow-inner space-y-3">
-          <p class="text-slate-800 font-extrabold text-lg sm:text-xl leading-relaxed">
+        <div class="p-4 sm:p-6 bg-white/90 rounded-2xl sm:rounded-3xl border-2 sm:border-3 border-red-100 shadow-inner space-y-3">
+          <p class="text-slate-800 font-extrabold text-sm sm:text-lg lg:text-xl leading-relaxed">
             Complete absence of operational pick-up trucks or motorbikes leaves the school <strong class="text-red-700 font-black">vulnerable during off-site medical emergencies</strong> and forces heavy third-party shipping expenses.
           </p>
         </div>
       </div>
 
-      <div class="pt-6 border-t-4 border-dashed border-red-200">
-        <div class="flex items-center justify-between p-4 bg-amber-100 rounded-2xl border-2 border-amber-300 text-amber-950 font-black text-base sm:text-lg shadow-sm">
+      <div class="pt-4 sm:pt-6 border-t-2 sm:border-t-4 border-dashed border-red-200">
+        <div class="flex items-center justify-between p-3.5 sm:p-4 bg-amber-100 rounded-xl sm:rounded-2xl border-2 border-amber-300 text-amber-950 font-black text-xs sm:text-base lg:text-lg shadow-sm">
           <span>Risk Exposure: Emergency Medical Logistics</span>
-          <span class="px-3 py-1 bg-amber-300 text-amber-950 text-xs sm:text-sm rounded-xl uppercase font-black tracking-wider">HIGH</span>
+          <span class="px-2.5 sm:px-3 py-1 bg-amber-300 text-amber-950 text-[10px] sm:text-xs lg:text-sm rounded-lg sm:rounded-xl uppercase font-black tracking-wider shrink-0">HIGH</span>
         </div>
       </div>
     </div>
 
     <!-- Risk 4: Data Vulnerability -->
-    <div class="bg-gradient-to-br from-slate-50 via-white to-red-50/40 rounded-3xl p-10 sm:p-12 border-4 border-slate-300 hover:border-red-600 transition-all duration-300 shadow-lg hover:shadow-2xl space-y-8 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-center justify-between gap-4 flex-wrap">
-          <div class="flex items-center gap-4">
-            <span class="h-14 w-14 rounded-2xl bg-red-600 text-white font-black text-xl flex items-center justify-center shadow-lg shrink-0">
+    <div class="bg-gradient-to-br from-slate-50 via-white to-red-50/40 rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-12 border-2 sm:border-4 border-slate-300 hover:border-red-600 transition-all duration-300 shadow-lg hover:shadow-2xl space-y-6 sm:space-y-8 flex flex-col justify-between group">
+      <div class="space-y-4 sm:space-y-6">
+        <div class="flex items-center justify-between gap-3 flex-wrap">
+          <div class="flex items-center gap-3 sm:gap-4">
+            <span class="h-10 w-10 sm:h-14 sm:w-14 rounded-xl sm:rounded-2xl bg-red-600 text-white font-black text-base sm:text-xl flex items-center justify-center shadow-lg shrink-0">
               04
             </span>
-            <span class="text-base sm:text-lg font-black text-red-700 uppercase tracking-widest">
+            <span class="text-xs sm:text-base lg:text-lg font-black text-red-700 uppercase tracking-widest">
               Data Vulnerability
             </span>
           </div>
-          <span class="px-5 py-2 bg-red-100 text-red-950 text-sm font-black rounded-2xl border-2 border-red-300 shadow-sm">
+          <span class="px-3 sm:px-5 py-1 sm:py-2 bg-red-100 text-red-950 text-xs sm:text-sm font-black rounded-xl sm:rounded-2xl border border-red-300 shadow-sm">
             14-Year-Old Database
           </span>
         </div>
 
-        <h4 class="text-3xl sm:text-4xl font-black text-slate-950 group-hover:text-red-950 transition-colors leading-tight">
+        <h4 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 group-hover:text-red-950 transition-colors leading-tight">
           Obsolete Student Information Software
         </h4>
 
-        <div class="p-6 bg-white/90 rounded-3xl border-3 border-red-100 shadow-inner space-y-3">
-          <p class="text-slate-800 font-extrabold text-lg sm:text-xl leading-relaxed">
+        <div class="p-4 sm:p-6 bg-white/90 rounded-2xl sm:rounded-3xl border-2 sm:border-3 border-red-100 shadow-inner space-y-3">
+          <p class="text-slate-800 font-extrabold text-sm sm:text-lg lg:text-xl leading-relaxed">
             Transcript database built in <strong class="bg-red-200 text-red-950 px-2 py-0.5 rounded-lg font-black">2012 GC</strong> has <strong class="text-red-700 font-black underline decoration-red-400">zero security patches</strong>, relying entirely on a single original technician. Unbacked legacy systems expose student records to crash risk.
           </p>
         </div>
       </div>
 
-      <div class="grid grid-cols-2 gap-4 pt-6 border-t-4 border-dashed border-red-200">
-        <div class="p-5 bg-white rounded-2xl border-2 border-slate-300 text-center shadow-sm">
-          <span class="text-xs font-black uppercase text-slate-500 block">Software Legacy</span>
-          <span class="text-xl font-black text-red-600">Built 2012 GC</span>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 pt-4 sm:pt-6 border-t-2 sm:border-t-4 border-dashed border-red-200">
+        <div class="p-3.5 sm:p-5 bg-white rounded-xl sm:rounded-2xl border-2 border-slate-300 text-center shadow-sm">
+          <span class="text-[10px] sm:text-xs font-black uppercase text-slate-500 block">Software Legacy</span>
+          <span class="text-base sm:text-xl font-black text-red-600">Built 2012 GC</span>
         </div>
-        <div class="p-5 bg-white rounded-2xl border-2 border-slate-300 text-center shadow-sm">
-          <span class="text-xs font-black uppercase text-slate-500 block">Security Status</span>
-          <span class="text-xl font-black text-red-600">0 Active Patches</span>
+        <div class="p-3.5 sm:p-5 bg-white rounded-xl sm:rounded-2xl border-2 border-slate-300 text-center shadow-sm">
+          <span class="text-[10px] sm:text-xs font-black uppercase text-slate-500 block">Security Status</span>
+          <span class="text-base sm:text-xl font-black text-red-600">0 Active Patches</span>
         </div>
       </div>
     </div>
@@ -588,91 +645,90 @@ try {
   </div>
 </section>
 
-
       <!-- SECTION 4: STRATEGIC SOLUTIONS & MONETIZATION PROJECTS -->
-<section class="w-full bg-white rounded-3xl p-8 sm:p-14 shadow-2xl border-4 border-slate-200 space-y-12">
+<section class="w-full bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-10 lg:p-14 shadow-2xl border-2 sm:border-4 border-slate-200 space-y-8 sm:space-y-12">
   <div>
-    <span class="px-6 py-2.5 bg-blue-100 text-blue-950 rounded-full text-base font-black uppercase tracking-widest border-2 border-blue-300 shadow-md inline-block mb-4">
+    <span class="px-4 sm:px-6 py-1.5 sm:py-2.5 bg-blue-100 text-blue-950 rounded-full text-xs sm:text-base font-black uppercase tracking-wider sm:tracking-widest border border-blue-300 shadow-md inline-block mb-3 sm:mb-4">
       Strategic Phasing
     </span>
-    <h3 class="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight uppercase leading-tight">
+    <h3 class="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight uppercase leading-tight">
       Capital Execution & Real Estate Development Model
     </h3>
-    <p class="text-slate-700 font-extrabold text-lg sm:text-2xl mt-2">
+    <p class="text-slate-700 font-extrabold text-sm sm:text-xl lg:text-2xl mt-2">
       Self-sustaining revenue generation and strategic asset protection initiatives.
     </p>
   </div>
 
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10">
 
     <!-- Project 1: Faculty Housing Block -->
-    <div class="bg-gradient-to-br from-slate-50 via-white to-blue-50/40 rounded-3xl p-10 sm:p-12 border-4 border-slate-300 hover:border-blue-900 transition-all duration-300 shadow-lg hover:shadow-2xl space-y-8 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-center justify-between gap-4 flex-wrap">
-          <span class="h-14 w-14 rounded-2xl bg-blue-900 text-white font-black text-2xl flex items-center justify-center shadow-lg shrink-0">
+    <div class="bg-gradient-to-br from-slate-50 via-white to-blue-50/40 rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-12 border-2 sm:border-4 border-slate-300 hover:border-blue-900 transition-all duration-300 shadow-lg hover:shadow-2xl space-y-6 sm:space-y-8 flex flex-col justify-between group">
+      <div class="space-y-4 sm:space-y-6">
+        <div class="flex items-center justify-between gap-3 flex-wrap">
+          <span class="h-10 w-10 sm:h-14 sm:w-14 rounded-xl sm:rounded-2xl bg-blue-900 text-white font-black text-base sm:text-2xl flex items-center justify-center shadow-lg shrink-0">
             P1
           </span>
-          <span class="px-5 py-2.5 bg-emerald-100 text-emerald-950 font-black text-base sm:text-lg uppercase tracking-widest rounded-2xl border-2 border-emerald-300 shadow-md">
+          <span class="px-3 sm:px-5 py-1.5 sm:py-2.5 bg-emerald-100 text-emerald-950 font-black text-xs sm:text-base lg:text-lg uppercase tracking-wider sm:tracking-widest rounded-xl sm:rounded-2xl border border-emerald-300 shadow-md">
             2,352,000 ETB / Year
           </span>
         </div>
 
-        <h4 class="text-3xl sm:text-4xl font-black text-slate-950 group-hover:text-blue-950 transition-colors leading-tight">
+        <h4 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 group-hover:text-blue-950 transition-colors leading-tight">
           28-Unit Faculty Housing Block
         </h4>
 
-        <div class="p-6 bg-white/90 rounded-3xl border-3 border-blue-100 shadow-inner space-y-3">
-          <p class="text-slate-800 font-extrabold text-lg sm:text-xl leading-relaxed">
+        <div class="p-4 sm:p-6 bg-white/90 rounded-2xl sm:rounded-3xl border-2 sm:border-3 border-blue-100 shadow-inner space-y-3">
+          <p class="text-slate-800 font-extrabold text-sm sm:text-lg lg:text-xl leading-relaxed">
             Shields <strong class="bg-blue-100 text-blue-950 px-2 py-0.5 rounded-lg font-black">28 core evaluated teachers</strong> from rental inflation by providing housing at <strong class="text-blue-900 font-black">7,000 ETB/month</strong>. <strong class="text-emerald-700 font-black underline decoration-emerald-400">Eliminates commute delays</strong> and generates clean liquidity for free scholarships.
           </p>
         </div>
       </div>
 
-      <div class="space-y-4 p-6 bg-slate-50 rounded-3xl border-3 border-slate-200 font-black text-slate-800 shadow-sm">
-        <div class="flex justify-between items-center border-b-2 border-slate-200 pb-3 text-base sm:text-lg">
+      <div class="space-y-3 sm:space-y-4 p-4 sm:p-6 bg-slate-50 rounded-2xl sm:rounded-3xl border-2 sm:border-3 border-slate-200 font-black text-slate-800 shadow-sm">
+        <div class="flex justify-between items-center border-b-2 border-slate-200 pb-2 sm:pb-3 text-xs sm:text-base lg:text-lg">
           <span class="text-slate-600 font-extrabold">Monthly Unit Rent</span>
-          <span class="text-slate-950 font-black text-xl">7,000 ETB</span>
+          <span class="text-slate-950 font-black text-base sm:text-xl">7,000 ETB</span>
         </div>
-        <div class="flex justify-between items-center border-b-2 border-slate-200 pb-3 text-base sm:text-lg">
+        <div class="flex justify-between items-center border-b-2 border-slate-200 pb-2 sm:pb-3 text-xs sm:text-base lg:text-lg">
           <span class="text-slate-600 font-extrabold">Monthly Recurring Yield</span>
-          <span class="text-slate-950 font-black text-xl">196,000 ETB</span>
+          <span class="text-slate-950 font-black text-base sm:text-xl">196,000 ETB</span>
         </div>
-        <div class="flex justify-between items-center pt-1 text-lg sm:text-xl">
+        <div class="flex justify-between items-center pt-1 text-sm sm:text-lg lg:text-xl">
           <span class="text-slate-800 font-black">Annual Cash Flow</span>
-          <span class="text-emerald-700 font-black text-2xl sm:text-3xl">2,352,000 ETB</span>
+          <span class="text-emerald-700 font-black text-lg sm:text-2xl lg:text-3xl">2,352,000 ETB</span>
         </div>
       </div>
     </div>
 
     <!-- Project 2: Placeholder Shipping Containers -->
-    <div class="bg-gradient-to-br from-slate-50 via-white to-blue-50/40 rounded-3xl p-10 sm:p-12 border-4 border-slate-300 hover:border-blue-900 transition-all duration-300 shadow-lg hover:shadow-2xl space-y-8 flex flex-col justify-between group">
-      <div class="space-y-6">
-        <div class="flex items-center justify-between gap-4 flex-wrap">
-          <span class="h-14 w-14 rounded-2xl bg-blue-900 text-white font-black text-2xl flex items-center justify-center shadow-lg shrink-0">
+    <div class="bg-gradient-to-br from-slate-50 via-white to-blue-50/40 rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-12 border-2 sm:border-4 border-slate-300 hover:border-blue-900 transition-all duration-300 shadow-lg hover:shadow-2xl space-y-6 sm:space-y-8 flex flex-col justify-between group">
+      <div class="space-y-4 sm:space-y-6">
+        <div class="flex items-center justify-between gap-3 flex-wrap">
+          <span class="h-10 w-10 sm:h-14 sm:w-14 rounded-xl sm:rounded-2xl bg-blue-900 text-white font-black text-base sm:text-2xl flex items-center justify-center shadow-lg shrink-0">
             P2
           </span>
-          <span class="px-5 py-2.5 bg-blue-100 text-blue-950 font-black text-base sm:text-lg uppercase tracking-widest rounded-2xl border-2 border-blue-300 shadow-md">
+          <span class="px-3 sm:px-5 py-1.5 sm:py-2.5 bg-blue-100 text-blue-950 font-black text-xs sm:text-base lg:text-lg uppercase tracking-wider sm:tracking-widest rounded-xl sm:rounded-2xl border border-blue-300 shadow-md">
             Land Boundary Defense
           </span>
         </div>
 
-        <h4 class="text-3xl sm:text-4xl font-black text-slate-950 group-hover:text-blue-950 transition-colors leading-tight">
+        <h4 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-950 group-hover:text-blue-950 transition-colors leading-tight">
           6-Container Perimeter Frontage Shops
         </h4>
 
-        <div class="p-6 bg-white/90 rounded-3xl border-3 border-blue-100 shadow-inner space-y-3">
-          <p class="text-slate-800 font-extrabold text-lg sm:text-xl leading-relaxed">
+        <div class="p-4 sm:p-6 bg-white/90 rounded-2xl sm:rounded-3xl border-2 sm:border-3 border-blue-100 shadow-inner space-y-3">
+          <p class="text-slate-800 font-extrabold text-sm sm:text-lg lg:text-xl leading-relaxed">
             Deploys <strong class="bg-blue-100 text-blue-950 px-2 py-0.5 rounded-lg font-black">6 idle shipping containers</strong> along the high-traffic double-asphalt <strong class="text-slate-950 font-black">Hawassa Piasa street front</strong>. <strong class="text-blue-900 font-black underline decoration-blue-400">Defends against municipal land-grabbing</strong> while structural blueprints are drawn.
           </p>
         </div>
       </div>
 
-      <div class="p-6 bg-amber-50/80 rounded-3xl border-3 border-amber-300 space-y-3 shadow-sm">
-        <div class="flex items-center gap-3 text-amber-950 font-black text-lg sm:text-xl">
-          <span class="h-4 w-4 rounded-full bg-amber-600 shrink-0"></span>
+      <div class="p-4 sm:p-6 bg-amber-50/80 rounded-2xl sm:rounded-3xl border-2 sm:border-3 border-amber-300 space-y-2 sm:space-y-3 shadow-sm">
+        <div class="flex items-center gap-2 sm:gap-3 text-amber-950 font-black text-sm sm:text-lg lg:text-xl">
+          <span class="h-3 w-3 sm:h-4 sm:w-4 rounded-full bg-amber-600 shrink-0"></span>
           <span>Strict Lease Canonical Ban</span>
         </div>
-        <p class="text-amber-950 font-extrabold text-base sm:text-lg leading-relaxed">
+        <p class="text-amber-950 font-extrabold text-xs sm:text-base lg:text-lg leading-relaxed">
           <strong class="text-red-700 font-black">Zero-tolerance ban</strong> on alcohol, tobacco, khat, or substances inconsistent with Catholic educational values.
         </p>
       </div>
@@ -683,152 +739,153 @@ try {
 
 
       <!-- IMAGE ANCHOR DIVIDER 2: INFRASTRUCTURE & CAMPUS EXPANSION -->
-      <section class="grid grid-cols-1 lg:grid-cols-2 gap-10 w-full">
-        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white h-80 sm:h-96 group cursor-pointer">
-          <img 
-            src="/images/comboni-construction.jpg" 
-            alt="Direct-Labor Construction Model" 
-            class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
-            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1000&auto=format&fit=crop';"
-          />
-          <div class="absolute inset-0 bg-slate-950/60 p-8 sm:p-12 flex flex-col justify-end">
-            <span class="text-white font-black text-2xl sm:text-3xl">Direct-Labor Construction</span>
-            <span class="text-slate-200 font-bold text-base sm:text-lg">Single Master Mason Foreman + Daily Labor slashes CapEx by 25–35%</span>
-          </div>
-        </div>
+      <!-- HERO IMAGE GRID -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 w-full">
+  <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-2 sm:border-4 border-white h-60 sm:h-80 lg:h-96 group cursor-pointer">
+    <img 
+      src="/images/comboni-construction.jpg" 
+      alt="Direct-Labor Construction Model" 
+      class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+      onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1000&auto=format&fit=crop';"
+    />
+    <div class="absolute inset-0 bg-slate-950/60 p-5 sm:p-8 lg:p-12 flex flex-col justify-end">
+      <span class="text-white font-black text-xl sm:text-2xl lg:text-3xl">Direct-Labor Construction</span>
+      <span class="text-slate-200 font-bold text-xs sm:text-base lg:text-lg">Single Master Mason Foreman + Daily Labor slashes CapEx by 25–35%</span>
+    </div>
+  </div>
 
-        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white h-80 sm:h-96 group cursor-pointer">
-          <img 
-            src="/images/comboni-bus.jpg" 
-            alt="Dual-Zone School Bus Fleet" 
-            class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
-            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1557223562-6c77ef16210f?q=80&w=1000&auto=format&fit=crop';"
-          />
-          <div class="absolute inset-0 bg-slate-950/60 p-8 sm:p-12 flex flex-col justify-end">
-            <span class="text-white font-black text-2xl sm:text-3xl">Dual-Zone Transit Fleet</span>
-            <span class="text-slate-200 font-bold text-base sm:text-lg">Hawassa & Shashamane transit coverage generates 3,000,000 ETB/yr</span>
-          </div>
-        </div>
-      </section>
+  <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-2 sm:border-4 border-white h-60 sm:h-80 lg:h-96 group cursor-pointer">
+    <img 
+      src="/images/comboni-bus.jpg" 
+      alt="Dual-Zone School Bus Fleet" 
+      class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
+      onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1557223562-6c77ef16210f?q=80&w=1000&auto=format&fit=crop';"
+    />
+    <div class="absolute inset-0 bg-slate-950/60 p-5 sm:p-8 lg:p-12 flex flex-col justify-end">
+      <span class="text-white font-black text-xl sm:text-2xl lg:text-3xl">Dual-Zone Transit Fleet</span>
+      <span class="text-slate-200 font-bold text-xs sm:text-base lg:text-lg">Hawassa & Shashamane transit coverage generates 3,000,000 ETB/yr</span>
+    </div>
+  </div>
+</section>
 
 
-      <!-- SECTION 5: CONSOLIDATED FINANCIAL REALIZATION MATRIX -->
-<section class="w-full bg-white rounded-3xl p-8 sm:p-14 shadow-2xl border-4 border-slate-200 space-y-10">
-  <div class="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6 pb-6 border-b-4 border-slate-200">
+<!-- SECTION 5: CONSOLIDATED FINANCIAL REALIZATION MATRIX -->
+<section class="w-full bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-10 lg:p-14 shadow-2xl border-2 sm:border-4 border-slate-200 space-y-8 sm:space-y-10">
+  <div class="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6 pb-6 border-b-2 sm:border-b-4 border-slate-200">
     <div>
-      <span class="px-6 py-2.5 bg-blue-100 text-blue-950 rounded-full text-base font-black uppercase tracking-widest border-2 border-blue-300 shadow-md inline-block mb-4">
+      <span class="px-4 sm:px-6 py-1.5 sm:py-2.5 bg-blue-100 text-blue-950 rounded-full text-xs sm:text-base font-black uppercase tracking-wider sm:tracking-widest border border-blue-300 shadow-md inline-block mb-3 sm:mb-4">
         Financial Architecture
       </span>
-      <h3 class="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight uppercase leading-tight">
+      <h3 class="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight uppercase leading-tight">
         Consolidated Financial Realization Matrix
       </h3>
-      <p class="text-slate-700 font-extrabold text-lg sm:text-2xl mt-2">
+      <p class="text-slate-700 font-extrabold text-sm sm:text-xl lg:text-2xl mt-2">
         Baseline tuition revenue and strategic commercial inflow models <span class="text-slate-500 font-bold">(Subject to Episcopal Supervision)</span>.
       </p>
     </div>
     
     <!-- Big Highlighted Header Card -->
-    <div class="p-6 bg-gradient-to-br from-blue-950 via-slate-900 to-blue-900 text-white rounded-3xl font-black border-4 border-blue-800 shadow-xl shrink-0 space-y-1 text-center xl:text-right w-full xl:w-auto">
-      <span class="text-xs font-black uppercase tracking-widest text-blue-300 block">Total Combined Annual Target</span>
-      <div class="text-3xl sm:text-4xl font-black text-emerald-400 tracking-tight">
-        21,217,000 <span class="text-xl text-white font-bold">ETB / Year</span>
+    <div class="p-4 sm:p-6 bg-gradient-to-br from-blue-950 via-slate-900 to-blue-900 text-white rounded-2xl sm:rounded-3xl font-black border-2 sm:border-4 border-blue-800 shadow-xl shrink-0 space-y-1 text-center xl:text-right w-full xl:w-auto">
+      <span class="text-[10px] sm:text-xs font-black uppercase tracking-widest text-blue-300 block">Total Combined Annual Target</span>
+      <div class="text-2xl sm:text-4xl font-black text-emerald-400 tracking-tight">
+        21,217,000 <span class="text-base sm:text-xl text-white font-bold">ETB / Year</span>
       </div>
     </div>
   </div>
 
-  <div class="overflow-x-auto rounded-3xl border-4 border-slate-200 shadow-lg">
-    <table class="w-full text-left border-collapse min-w-[800px]">
+  <div class="overflow-x-auto rounded-2xl sm:rounded-3xl border-2 sm:border-4 border-slate-200 shadow-lg">
+    <table class="w-full text-left border-collapse min-w-[700px] sm:min-w-[800px]">
       <thead>
-        <tr class="bg-slate-900 text-white text-base font-black uppercase tracking-widest">
-          <th class="py-6 px-8 border-r border-slate-800">Revenue Stream</th>
-          <th class="py-6 px-8 border-r border-slate-800">Operational Scope / Rate</th>
-          <th class="py-6 px-8 border-r border-slate-800">Target Allocation</th>
-          <th class="py-6 px-8 text-right">Annual Forecast</th>
+        <tr class="bg-slate-900 text-white text-xs sm:text-base font-black uppercase tracking-wider sm:tracking-widest">
+          <th class="py-4 sm:py-6 px-4 sm:px-8 border-r border-slate-800">Revenue Stream</th>
+          <th class="py-4 sm:py-6 px-4 sm:px-8 border-r border-slate-800">Operational Scope / Rate</th>
+          <th class="py-4 sm:py-6 px-4 sm:px-8 border-r border-slate-800">Target Allocation</th>
+          <th class="py-4 sm:py-6 px-4 sm:px-8 text-right">Annual Forecast</th>
         </tr>
       </thead>
-      <tbody class="divide-y-4 divide-slate-200 bg-slate-50/50 font-black text-base sm:text-xl">
+      <tbody class="divide-y-2 sm:divide-y-4 divide-slate-200 bg-slate-50/50 font-black text-sm sm:text-xl">
         
         <!-- Row 1: Core Academic Tuition -->
         <tr class="hover:bg-blue-50/60 transition-colors group">
-          <td class="py-8 px-8 text-slate-950 border-r-2 border-slate-200">
+          <td class="py-5 sm:py-8 px-4 sm:px-8 text-slate-950 border-r-2 border-slate-200">
             <div class="space-y-1">
-              <span class="text-2xl font-black block group-hover:text-blue-950 transition-colors">Core Academic Student Tuition</span>
-              <span class="px-3 py-1 bg-blue-100 text-blue-950 text-xs font-black rounded-lg border border-blue-300 inline-block uppercase tracking-wider">Primary Operations</span>
+              <span class="text-lg sm:text-2xl font-black block group-hover:text-blue-950 transition-colors">Core Academic Student Tuition</span>
+              <span class="px-2.5 sm:px-3 py-0.5 sm:py-1 bg-blue-100 text-blue-950 text-[10px] sm:text-xs font-black rounded-lg border border-blue-300 inline-block uppercase tracking-wider">Primary Operations</span>
             </div>
           </td>
-          <td class="py-8 px-8 text-slate-800 border-r-2 border-slate-200 font-extrabold">
-            <span class="bg-white px-3 py-1.5 rounded-xl border-2 border-slate-200 inline-block shadow-sm">
+          <td class="py-5 sm:py-8 px-4 sm:px-8 text-slate-800 border-r-2 border-slate-200 font-extrabold">
+            <span class="bg-white px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl border border-slate-200 sm:border-2 inline-block shadow-sm text-xs sm:text-base">
               <strong class="text-slate-950 font-black">835 Students</strong> @ 19,000 ETB/yr
             </span>
           </td>
-          <td class="py-8 px-8 text-slate-700 text-base font-extrabold border-r-2 border-slate-200">
+          <td class="py-5 sm:py-8 px-4 sm:px-8 text-slate-700 text-xs sm:text-base font-extrabold border-r-2 border-slate-200">
             Faculty Payroll & Core Operations
           </td>
-          <td class="py-8 px-8 text-right text-slate-950 font-black text-2xl sm:text-3xl">
-            15,865,000 <span class="text-base text-slate-500 font-bold block">ETB</span>
+          <td class="py-5 sm:py-8 px-4 sm:px-8 text-right text-slate-950 font-black text-xl sm:text-3xl">
+            15,865,000 <span class="text-xs sm:text-base text-slate-500 font-bold block">ETB</span>
           </td>
         </tr>
 
         <!-- Row 2: Faculty Housing -->
         <tr class="hover:bg-emerald-50/60 transition-colors group">
-          <td class="py-8 px-8 text-slate-950 border-r-2 border-slate-200">
+          <td class="py-5 sm:py-8 px-4 sm:px-8 text-slate-950 border-r-2 border-slate-200">
             <div class="space-y-1">
-              <span class="text-2xl font-black block group-hover:text-emerald-950 transition-colors">Faculty Housing Block Rental</span>
-              <span class="px-3 py-1 bg-emerald-100 text-emerald-950 text-xs font-black rounded-lg border border-emerald-300 inline-block uppercase tracking-wider">Project 1 Commercial</span>
+              <span class="text-lg sm:text-2xl font-black block group-hover:text-emerald-950 transition-colors">Faculty Housing Block Rental</span>
+              <span class="px-2.5 sm:px-3 py-0.5 sm:py-1 bg-emerald-100 text-emerald-950 text-[10px] sm:text-xs font-black rounded-lg border border-emerald-300 inline-block uppercase tracking-wider">Project 1 Commercial</span>
             </div>
           </td>
-          <td class="py-8 px-8 text-slate-800 border-r-2 border-slate-200 font-extrabold">
-            <span class="bg-white px-3 py-1.5 rounded-xl border-2 border-slate-200 inline-block shadow-sm">
+          <td class="py-5 sm:py-8 px-4 sm:px-8 text-slate-800 border-r-2 border-slate-200 font-extrabold">
+            <span class="bg-white px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl border border-slate-200 sm:border-2 inline-block shadow-sm text-xs sm:text-base">
               <strong class="text-slate-950 font-black">28 Units</strong> @ 7,000 ETB/mo
             </span>
           </td>
-          <td class="py-8 px-8 text-slate-700 text-base font-extrabold border-r-2 border-slate-200">
+          <td class="py-5 sm:py-8 px-4 sm:px-8 text-slate-700 text-xs sm:text-base font-extrabold border-r-2 border-slate-200">
             Bank Debt Service <span class="text-emerald-700 font-black">➔ Free Scholarships</span>
           </td>
-          <td class="py-8 px-8 text-right text-emerald-700 font-black text-2xl sm:text-3xl">
-            2,352,000 <span class="text-base text-emerald-600/70 font-bold block">ETB</span>
+          <td class="py-5 sm:py-8 px-4 sm:px-8 text-right text-emerald-700 font-black text-xl sm:text-3xl">
+            2,352,000 <span class="text-xs sm:text-base text-emerald-600/70 font-bold block">ETB</span>
           </td>
         </tr>
 
         <!-- Row 3: Urban Bus Fleet -->
         <tr class="hover:bg-sky-50/60 transition-colors group">
-          <td class="py-8 px-8 text-slate-950 border-r-2 border-slate-200">
+          <td class="py-5 sm:py-8 px-4 sm:px-8 text-slate-950 border-r-2 border-slate-200">
             <div class="space-y-1">
-              <span class="text-2xl font-black block group-hover:text-blue-950 transition-colors">Urban Bus Fleet (Hawassa Local)</span>
-              <span class="px-3 py-1 bg-sky-100 text-sky-950 text-xs font-black rounded-lg border border-sky-300 inline-block uppercase tracking-wider">Logistics Revenue</span>
+              <span class="text-lg sm:text-2xl font-black block group-hover:text-blue-950 transition-colors">Urban Bus Fleet (Hawassa Local)</span>
+              <span class="px-2.5 sm:px-3 py-0.5 sm:py-1 bg-sky-100 text-sky-950 text-[10px] sm:text-xs font-black rounded-lg border border-sky-300 inline-block uppercase tracking-wider">Logistics Revenue</span>
             </div>
           </td>
-          <td class="py-8 px-8 text-slate-800 border-r-2 border-slate-200 font-extrabold">
-            <span class="bg-white px-3 py-1.5 rounded-xl border-2 border-slate-200 inline-block shadow-sm">
+          <td class="py-5 sm:py-8 px-4 sm:px-8 text-slate-800 border-r-2 border-slate-200 font-extrabold">
+            <span class="bg-white px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl border border-slate-200 sm:border-2 inline-block shadow-sm text-xs sm:text-base">
               <strong class="text-slate-950 font-black">250 Students</strong> @ 1,200 ETB/mo
             </span>
           </td>
-          <td class="py-8 px-8 text-slate-700 text-base font-extrabold border-r-2 border-slate-200">
+          <td class="py-5 sm:py-8 px-4 sm:px-8 text-slate-700 text-xs sm:text-base font-extrabold border-r-2 border-slate-200">
             Vehicle Fuel, Drivers & Fleet CapEx
           </td>
-          <td class="py-8 px-8 text-right text-blue-900 font-black text-2xl sm:text-3xl">
-            3,000,000 <span class="text-base text-blue-700/70 font-bold block">ETB</span>
+          <td class="py-5 sm:py-8 px-4 sm:px-8 text-right text-blue-900 font-black text-xl sm:text-3xl">
+            3,000,000 <span class="text-xs sm:text-base text-blue-700/70 font-bold block">ETB</span>
           </td>
         </tr>
 
         <!-- Row 4: Corridor & Container Shops -->
         <tr class="hover:bg-amber-50/60 transition-colors group">
-          <td class="py-8 px-8 text-slate-950 border-r-2 border-slate-200">
+          <td class="py-5 sm:py-8 px-4 sm:px-8 text-slate-950 border-r-2 border-slate-200">
             <div class="space-y-1">
-              <span class="text-2xl font-black block group-hover:text-amber-950 transition-colors">Shashamane Corridor & Container Shops</span>
-              <span class="px-3 py-1 bg-amber-100 text-amber-950 text-xs font-black rounded-lg border border-amber-300 inline-block uppercase tracking-wider">Project 2 Boundary</span>
+              <span class="text-lg sm:text-2xl font-black block group-hover:text-amber-950 transition-colors">Shashamane Corridor & Container Shops</span>
+              <span class="px-2.5 sm:px-3 py-0.5 sm:py-1 bg-amber-100 text-amber-950 text-[10px] sm:text-xs font-black rounded-lg border border-amber-300 inline-block uppercase tracking-wider">Project 2 Boundary</span>
             </div>
           </td>
-          <td class="py-8 px-8 text-slate-800 border-r-2 border-slate-200 font-extrabold">
-            <span class="bg-white px-3 py-1.5 rounded-xl border-2 border-slate-200 inline-block shadow-sm">
+          <td class="py-5 sm:py-8 px-4 sm:px-8 text-slate-800 border-r-2 border-slate-200 font-extrabold">
+            <span class="bg-white px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl border border-slate-200 sm:border-2 inline-block shadow-sm text-xs sm:text-base">
               <strong class="text-slate-950 font-black">6 Container Shops</strong> + Regional Corridor
             </span>
           </td>
-          <td class="py-8 px-8 text-slate-700 text-base font-extrabold border-r-2 border-slate-200">
+          <td class="py-5 sm:py-8 px-4 sm:px-8 text-slate-700 text-xs sm:text-base font-extrabold border-r-2 border-slate-200">
             Main Gate Security & 30-Classroom CapEx
           </td>
-          <td class="py-8 px-8 text-right text-amber-700 font-black text-xl sm:text-2xl">
-            <span class="px-4 py-2 bg-amber-100 text-amber-950 rounded-xl border-2 border-amber-300 inline-block">
+          <td class="py-5 sm:py-8 px-4 sm:px-8 text-right text-amber-700 font-black text-base sm:text-2xl">
+            <span class="px-3 sm:px-4 py-1.5 sm:py-2 bg-amber-100 text-amber-950 rounded-lg sm:rounded-xl border border-amber-300 sm:border-2 inline-block text-xs sm:text-base">
               In Final Calculation
             </span>
           </td>
@@ -841,128 +898,128 @@ try {
 
 
       <!-- SECTION 6: STRATEGIC COMPARISON MATRIX (OLD VS NEW) -->
-      <!-- SECTION: MODEL TRANSFORMATION COMPARISON -->
-<section class="w-full bg-white rounded-3xl p-8 sm:p-14 shadow-2xl border-4 border-slate-200 space-y-12">
+<!-- SECTION: MODEL TRANSFORMATION COMPARISON -->
+<section class="w-full bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-10 lg:p-14 shadow-2xl border-2 sm:border-4 border-slate-200 space-y-8 sm:space-y-12">
   <div>
-    <span class="px-6 py-2.5 bg-blue-100 text-blue-950 rounded-full text-base font-black uppercase tracking-widest border-2 border-blue-300 shadow-md inline-block mb-4">
+    <span class="px-4 sm:px-6 py-1.5 sm:py-2.5 bg-blue-100 text-blue-950 rounded-full text-xs sm:text-base font-black uppercase tracking-wider sm:tracking-widest border border-blue-300 shadow-md inline-block mb-3 sm:mb-4">
       Strategic Paradigm Shift
     </span>
-    <h3 class="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight uppercase leading-tight">
+    <h3 class="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight uppercase leading-tight">
       Model Transformation Comparison
     </h3>
-    <p class="text-slate-700 font-extrabold text-lg sm:text-2xl mt-2">
+    <p class="text-slate-700 font-extrabold text-sm sm:text-xl lg:text-2xl mt-2">
       Transition from traditional congregational reliance to a self-sustaining Diocesan asset model.
     </p>
   </div>
 
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
     
     <!-- Comparison 1: Financial Philosophy -->
-    <div class="bg-gradient-to-br from-slate-50 via-white to-blue-50/40 rounded-3xl p-8 sm:p-10 border-4 border-slate-300 hover:border-blue-900 transition-all duration-300 shadow-lg hover:shadow-2xl flex flex-col justify-between space-y-8 group">
-      <div class="space-y-6">
-        <div class="flex items-center justify-between gap-2 border-b-2 border-slate-200 pb-4">
-          <span class="text-base sm:text-lg font-black text-blue-900 uppercase tracking-widest">
+    <div class="bg-gradient-to-br from-slate-50 via-white to-blue-50/40 rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 border-2 sm:border-4 border-slate-300 hover:border-blue-900 transition-all duration-300 shadow-lg hover:shadow-2xl flex flex-col justify-between space-y-6 sm:space-y-8 group">
+      <div class="space-y-4 sm:space-y-6">
+        <div class="flex items-center justify-between gap-2 border-b-2 border-slate-200 pb-3 sm:pb-4">
+          <span class="text-sm sm:text-base lg:text-lg font-black text-blue-900 uppercase tracking-wider sm:tracking-widest">
             01. Financial Philosophy
           </span>
-          <span class="px-3 py-1 bg-blue-100 text-blue-950 text-xs font-black rounded-lg border border-blue-300 uppercase">
+          <span class="px-2.5 sm:px-3 py-0.5 sm:py-1 bg-blue-100 text-blue-950 text-[10px] sm:text-xs font-black rounded-lg border border-blue-300 uppercase">
             Sustainability
           </span>
         </div>
 
         <!-- Previous Model Box -->
-        <div class="p-5 bg-slate-100/80 rounded-2xl border-2 border-slate-200 space-y-2">
-          <span class="text-xs font-black text-slate-500 uppercase tracking-wider block">
+        <div class="p-4 sm:p-5 bg-slate-100/80 rounded-xl sm:rounded-2xl border border-slate-200 sm:border-2 space-y-1 sm:space-y-2">
+          <span class="text-[10px] sm:text-xs font-black text-slate-500 uppercase tracking-wider block">
             Previous Model
           </span>
-          <p class="text-slate-700 font-bold text-base sm:text-lg leading-snug">
+          <p class="text-slate-700 font-bold text-sm sm:text-base lg:text-lg leading-snug">
             Donor-dependent, relying heavily on <strong class="text-slate-900 font-black">variable congregation aid</strong>.
           </p>
         </div>
       </div>
 
       <!-- New Strategic Model Box -->
-      <div class="p-6 bg-gradient-to-br from-emerald-600 to-emerald-700 text-white rounded-2xl border-2 border-emerald-500 shadow-md space-y-2">
+      <div class="p-4 sm:p-6 bg-gradient-to-br from-emerald-600 to-emerald-700 text-white rounded-xl sm:rounded-2xl border border-emerald-500 sm:border-2 shadow-md space-y-1.5 sm:space-y-2">
         <div class="flex items-center gap-2">
-          <span class="h-3 w-3 rounded-full bg-emerald-300 animate-pulse"></span>
-          <span class="text-xs font-black uppercase tracking-widest text-emerald-100">
+          <span class="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-emerald-300 animate-pulse"></span>
+          <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider sm:tracking-widest text-emerald-100">
             New MBA Strategic Model
           </span>
         </div>
-        <p class="text-white font-black text-lg sm:text-xl leading-relaxed">
+        <p class="text-white font-black text-base sm:text-lg lg:text-xl leading-relaxed">
           Self-reliance revenue engine capitalizing on <strong class="text-yellow-300 underline font-black">prime street-front real estate</strong>.
         </p>
       </div>
     </div>
 
     <!-- Comparison 2: Talent Retention -->
-    <div class="bg-gradient-to-br from-slate-50 via-white to-blue-50/40 rounded-3xl p-8 sm:p-10 border-4 border-slate-300 hover:border-blue-900 transition-all duration-300 shadow-lg hover:shadow-2xl flex flex-col justify-between space-y-8 group">
-      <div class="space-y-6">
-        <div class="flex items-center justify-between gap-2 border-b-2 border-slate-200 pb-4">
-          <span class="text-base sm:text-lg font-black text-blue-900 uppercase tracking-widest">
+    <div class="bg-gradient-to-br from-slate-50 via-white to-blue-50/40 rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 border-2 sm:border-4 border-slate-300 hover:border-blue-900 transition-all duration-300 shadow-lg hover:shadow-2xl flex flex-col justify-between space-y-6 sm:space-y-8 group">
+      <div class="space-y-4 sm:space-y-6">
+        <div class="flex items-center justify-between gap-2 border-b-2 border-slate-200 pb-3 sm:pb-4">
+          <span class="text-sm sm:text-base lg:text-lg font-black text-blue-900 uppercase tracking-wider sm:tracking-widest">
             02. Talent Retention
           </span>
-          <span class="px-3 py-1 bg-blue-100 text-blue-950 text-xs font-black rounded-lg border border-blue-300 uppercase">
+          <span class="px-2.5 sm:px-3 py-0.5 sm:py-1 bg-blue-100 text-blue-950 text-[10px] sm:text-xs font-black rounded-lg border border-blue-300 uppercase">
             Human Capital
           </span>
         </div>
 
         <!-- Previous Model Box -->
-        <div class="p-5 bg-slate-100/80 rounded-2xl border-2 border-slate-200 space-y-2">
-          <span class="text-xs font-black text-slate-500 uppercase tracking-wider block">
+        <div class="p-4 sm:p-5 bg-slate-100/80 rounded-xl sm:rounded-2xl border border-slate-200 sm:border-2 space-y-1 sm:space-y-2">
+          <span class="text-[10px] sm:text-xs font-black text-slate-500 uppercase tracking-wider block">
             Previous Model
           </span>
-          <p class="text-slate-700 font-bold text-base sm:text-lg leading-snug">
+          <p class="text-slate-700 font-bold text-sm sm:text-base lg:text-lg leading-snug">
             Standard cash salary matching <strong class="text-red-700 font-black">vulnerable to market poaching</strong>.
           </p>
         </div>
       </div>
 
       <!-- New Strategic Model Box -->
-      <div class="p-6 bg-gradient-to-br from-emerald-600 to-emerald-700 text-white rounded-2xl border-2 border-emerald-500 shadow-md space-y-2">
+      <div class="p-4 sm:p-6 bg-gradient-to-br from-emerald-600 to-emerald-700 text-white rounded-xl sm:rounded-2xl border border-emerald-500 sm:border-2 shadow-md space-y-1.5 sm:space-y-2">
         <div class="flex items-center gap-2">
-          <span class="h-3 w-3 rounded-full bg-emerald-300 animate-pulse"></span>
-          <span class="text-xs font-black uppercase tracking-widest text-emerald-100">
+          <span class="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-emerald-300 animate-pulse"></span>
+          <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider sm:tracking-widest text-emerald-100">
             New MBA Strategic Model
           </span>
         </div>
-        <p class="text-white font-black text-lg sm:text-xl leading-relaxed">
+        <p class="text-white font-black text-base sm:text-lg lg:text-xl leading-relaxed">
           <strong class="text-yellow-300 font-black">28-unit faculty housing</strong> at 7,000 ETB/mo shielding real income from inflation.
         </p>
       </div>
     </div>
 
     <!-- Comparison 3: Procurement & CapEx -->
-    <div class="bg-gradient-to-br from-slate-50 via-white to-blue-50/40 rounded-3xl p-8 sm:p-10 border-4 border-slate-300 hover:border-blue-900 transition-all duration-300 shadow-lg hover:shadow-2xl flex flex-col justify-between space-y-8 group">
-      <div class="space-y-6">
-        <div class="flex items-center justify-between gap-2 border-b-2 border-slate-200 pb-4">
-          <span class="text-base sm:text-lg font-black text-blue-900 uppercase tracking-widest">
+    <div class="bg-gradient-to-br from-slate-50 via-white to-blue-50/40 rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 border-2 sm:border-4 border-slate-300 hover:border-blue-900 transition-all duration-300 shadow-lg hover:shadow-2xl flex flex-col justify-between space-y-6 sm:space-y-8 group">
+      <div class="space-y-4 sm:space-y-6">
+        <div class="flex items-center justify-between gap-2 border-b-2 border-slate-200 pb-3 sm:pb-4">
+          <span class="text-sm sm:text-base lg:text-lg font-black text-blue-900 uppercase tracking-wider sm:tracking-widest">
             03. Procurement & CapEx
           </span>
-          <span class="px-3 py-1 bg-blue-100 text-blue-950 text-xs font-black rounded-lg border border-blue-300 uppercase">
+          <span class="px-2.5 sm:px-3 py-0.5 sm:py-1 bg-blue-100 text-blue-950 text-[10px] sm:text-xs font-black rounded-lg border border-blue-300 uppercase">
             Efficiency
           </span>
         </div>
 
         <!-- Previous Model Box -->
-        <div class="p-5 bg-slate-100/80 rounded-2xl border-2 border-slate-200 space-y-2">
-          <span class="text-xs font-black text-slate-500 uppercase tracking-wider block">
+        <div class="p-4 sm:p-5 bg-slate-100/80 rounded-xl sm:rounded-2xl border border-slate-200 sm:border-2 space-y-1 sm:space-y-2">
+          <span class="text-[10px] sm:text-xs font-black text-slate-500 uppercase tracking-wider block">
             Previous Model
           </span>
-          <p class="text-slate-700 font-bold text-base sm:text-lg leading-snug">
+          <p class="text-slate-700 font-bold text-sm sm:text-base lg:text-lg leading-snug">
             External commercial contractors with <strong class="text-slate-900 font-black">20–30% profit markups</strong>.
           </p>
         </div>
       </div>
 
       <!-- New Strategic Model Box -->
-      <div class="p-6 bg-gradient-to-br from-emerald-600 to-emerald-700 text-white rounded-2xl border-2 border-emerald-500 shadow-md space-y-2">
+      <div class="p-4 sm:p-6 bg-gradient-to-br from-emerald-600 to-emerald-700 text-white rounded-xl sm:rounded-2xl border border-emerald-500 sm:border-2 shadow-md space-y-1.5 sm:space-y-2">
         <div class="flex items-center gap-2">
-          <span class="h-3 w-3 rounded-full bg-emerald-300 animate-pulse"></span>
-          <span class="text-xs font-black uppercase tracking-widest text-emerald-100">
+          <span class="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-emerald-300 animate-pulse"></span>
+          <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider sm:tracking-widest text-emerald-100">
             New MBA Strategic Model
           </span>
         </div>
-        <p class="text-white font-black text-lg sm:text-xl leading-relaxed">
+        <p class="text-white font-black text-base sm:text-lg lg:text-xl leading-relaxed">
           Direct-labor master mason foreman system <strong class="text-yellow-300 font-black">cutting costs by 25–35%</strong>.
         </p>
       </div>
@@ -972,101 +1029,101 @@ try {
 </section>
 
 
-      <!-- SECTION 7: TWO-TIERED PASTORAL SCHOLARSHIP ARCHITECTURE -->
-<section class="w-full bg-gradient-to-br from-blue-950 via-slate-900 to-blue-900 text-white rounded-3xl p-8 sm:p-14 shadow-2xl border-4 border-blue-800/80 space-y-12 relative overflow-hidden">
+<!-- SECTION 7: TWO-TIERED PASTORAL SCHOLARSHIP ARCHITECTURE -->
+<section class="w-full bg-gradient-to-br from-blue-950 via-slate-900 to-blue-900 text-white rounded-2xl sm:rounded-3xl p-5 sm:p-10 lg:p-14 shadow-2xl border-2 sm:border-4 border-blue-800/80 space-y-8 sm:space-y-12 relative overflow-hidden">
   
   <!-- Decorative background accent glow -->
-  <div class="absolute -top-24 -right-24 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute -top-24 -right-24 w-64 h-64 sm:w-96 sm:h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
 
-  <div class="space-y-4 relative z-10">
-    <span class="px-6 py-2.5 bg-blue-800/90 text-blue-200 rounded-full text-base font-black uppercase tracking-widest border-2 border-blue-600/80 shadow-md inline-block">
+  <div class="space-y-3 sm:space-y-4 relative z-10">
+    <span class="px-4 sm:px-6 py-1.5 sm:py-2.5 bg-blue-800/90 text-blue-200 rounded-full text-xs sm:text-base font-black uppercase tracking-wider sm:tracking-widest border border-blue-600/80 sm:border-2 shadow-md inline-block">
       Social & Pastoral Mission
     </span>
-    <h3 class="text-3xl sm:text-5xl font-black tracking-tight uppercase leading-tight text-white">
+    <h3 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight uppercase leading-tight text-white">
       Two-Tiered Pastoral Scholarship Framework
     </h3>
-    <p class="text-slate-200 font-extrabold text-lg sm:text-2xl max-w-4xl leading-relaxed">
+    <p class="text-slate-200 font-extrabold text-sm sm:text-xl lg:text-2xl max-w-4xl leading-relaxed">
       Commercial real estate yields directly finance <strong class="text-emerald-400 font-black underline decoration-emerald-500">100% free scholarships</strong> for brilliant, low-income candidates across the Vicariate.
     </p>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8 relative z-10">
     
     <!-- Pipeline 1 Card -->
-    <div class="bg-blue-900/40 backdrop-blur-md p-8 sm:p-10 rounded-3xl border-4 border-blue-700/60 hover:border-emerald-400 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between space-y-6 group hover:-translate-y-1">
-      <div class="space-y-4">
+    <div class="bg-blue-900/40 backdrop-blur-md p-5 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl border-2 sm:border-4 border-blue-700/60 hover:border-emerald-400 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between space-y-4 sm:space-y-6 group hover:-translate-y-1">
+      <div class="space-y-3 sm:space-y-4">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-black text-blue-300 uppercase tracking-widest px-3 py-1 bg-blue-950/80 rounded-lg border border-blue-700">
+          <span class="text-[10px] sm:text-xs font-black text-blue-300 uppercase tracking-wider sm:tracking-widest px-2.5 sm:px-3 py-0.5 sm:py-1 bg-blue-950/80 rounded-lg border border-blue-700">
             Pipeline 01
           </span>
-          <span class="h-3 w-3 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-emerald-400 animate-pulse"></span>
         </div>
-        <h4 class="text-2xl sm:text-3xl font-black text-white group-hover:text-emerald-300 transition-colors leading-tight">
+        <h4 class="text-xl sm:text-2xl lg:text-3xl font-black text-white group-hover:text-emerald-300 transition-colors leading-tight">
           20 Parish Network
         </h4>
       </div>
-      <div class="p-4 bg-blue-950/70 rounded-2xl border border-blue-800">
-        <p class="text-slate-200 font-extrabold text-base sm:text-lg leading-relaxed">
+      <div class="p-3.5 sm:p-4 bg-blue-950/70 rounded-xl sm:rounded-2xl border border-blue-800">
+        <p class="text-slate-200 font-extrabold text-xs sm:text-base lg:text-lg leading-relaxed">
           Selected across <strong class="text-white font-black">Vicariate-level</strong> parish networks.
         </p>
       </div>
     </div>
 
     <!-- Pipeline 2 Card -->
-    <div class="bg-blue-900/40 backdrop-blur-md p-8 sm:p-10 rounded-3xl border-4 border-blue-700/60 hover:border-emerald-400 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between space-y-6 group hover:-translate-y-1">
-      <div class="space-y-4">
+    <div class="bg-blue-900/40 backdrop-blur-md p-5 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl border-2 sm:border-4 border-blue-700/60 hover:border-emerald-400 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between space-y-4 sm:space-y-6 group hover:-translate-y-1">
+      <div class="space-y-3 sm:space-y-4">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-black text-blue-300 uppercase tracking-widest px-3 py-1 bg-blue-950/80 rounded-lg border border-blue-700">
+          <span class="text-[10px] sm:text-xs font-black text-blue-300 uppercase tracking-wider sm:tracking-widest px-2.5 sm:px-3 py-0.5 sm:py-1 bg-blue-950/80 rounded-lg border border-blue-700">
             Pipeline 02
           </span>
-          <span class="h-3 w-3 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-emerald-400 animate-pulse"></span>
         </div>
-        <h4 class="text-2xl sm:text-3xl font-black text-white group-hover:text-emerald-300 transition-colors leading-tight">
+        <h4 class="text-xl sm:text-2xl lg:text-3xl font-black text-white group-hover:text-emerald-300 transition-colors leading-tight">
           Local Poor Sector
         </h4>
       </div>
-      <div class="p-4 bg-blue-950/70 rounded-2xl border border-blue-800">
-        <p class="text-slate-200 font-extrabold text-base sm:text-lg leading-relaxed">
+      <div class="p-3.5 sm:p-4 bg-blue-950/70 rounded-xl sm:rounded-2xl border border-blue-800">
+        <p class="text-slate-200 font-extrabold text-xs sm:text-base lg:text-lg leading-relaxed">
           Targeting the <strong class="text-white font-black">poorest families</strong> within Hawassa.
         </p>
       </div>
     </div>
 
     <!-- Selection Standard Card -->
-    <div class="bg-blue-900/40 backdrop-blur-md p-8 sm:p-10 rounded-3xl border-4 border-blue-700/60 hover:border-yellow-400 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between space-y-6 group hover:-translate-y-1">
-      <div class="space-y-4">
+    <div class="bg-blue-900/40 backdrop-blur-md p-5 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl border-2 sm:border-4 border-blue-700/60 hover:border-yellow-400 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between space-y-4 sm:space-y-6 group hover:-translate-y-1">
+      <div class="space-y-3 sm:space-y-4">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-black text-blue-300 uppercase tracking-widest px-3 py-1 bg-blue-950/80 rounded-lg border border-blue-700">
+          <span class="text-[10px] sm:text-xs font-black text-blue-300 uppercase tracking-wider sm:tracking-widest px-2.5 sm:px-3 py-0.5 sm:py-1 bg-blue-950/80 rounded-lg border border-blue-700">
             Standard
           </span>
-          <span class="h-3 w-3 rounded-full bg-yellow-400"></span>
+          <span class="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-yellow-400"></span>
         </div>
-        <h4 class="text-2xl sm:text-3xl font-black text-white group-hover:text-yellow-300 transition-colors leading-tight">
+        <h4 class="text-xl sm:text-2xl lg:text-3xl font-black text-white group-hover:text-yellow-300 transition-colors leading-tight">
           Merit-Driven Academic
         </h4>
       </div>
-      <div class="p-4 bg-blue-950/70 rounded-2xl border border-blue-800">
-        <p class="text-slate-200 font-extrabold text-base sm:text-lg leading-relaxed">
+      <div class="p-3.5 sm:p-4 bg-blue-950/70 rounded-xl sm:rounded-2xl border border-blue-800">
+        <p class="text-slate-200 font-extrabold text-xs sm:text-base lg:text-lg leading-relaxed">
           Strictly reserved for <strong class="text-yellow-300 font-black">top academic performers</strong>.
         </p>
       </div>
     </div>
 
     <!-- Inclusion Mandate Card -->
-    <div class="bg-blue-900/40 backdrop-blur-md p-8 sm:p-10 rounded-3xl border-4 border-blue-700/60 hover:border-sky-400 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between space-y-6 group hover:-translate-y-1">
-      <div class="space-y-4">
+    <div class="bg-blue-900/40 backdrop-blur-md p-5 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl border-2 sm:border-4 border-blue-700/60 hover:border-sky-400 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col justify-between space-y-4 sm:space-y-6 group hover:-translate-y-1">
+      <div class="space-y-3 sm:space-y-4">
         <div class="flex items-center justify-between">
-          <span class="text-xs font-black text-blue-300 uppercase tracking-widest px-3 py-1 bg-blue-950/80 rounded-lg border border-blue-700">
+          <span class="text-[10px] sm:text-xs font-black text-blue-300 uppercase tracking-wider sm:tracking-widest px-2.5 sm:px-3 py-0.5 sm:py-1 bg-blue-950/80 rounded-lg border border-blue-700">
             Mandate
           </span>
-          <span class="h-3 w-3 rounded-full bg-sky-400"></span>
+          <span class="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-sky-400"></span>
         </div>
-        <h4 class="text-2xl sm:text-3xl font-black text-white group-hover:text-sky-300 transition-colors leading-tight">
+        <h4 class="text-xl sm:text-2xl lg:text-3xl font-black text-white group-hover:text-sky-300 transition-colors leading-tight">
           Non-Discrimination
         </h4>
       </div>
-      <div class="p-4 bg-blue-950/70 rounded-2xl border border-blue-800">
-        <p class="text-slate-200 font-extrabold text-base sm:text-lg leading-relaxed">
+      <div class="p-3.5 sm:p-4 bg-blue-950/70 rounded-xl sm:rounded-2xl border border-blue-800">
+        <p class="text-slate-200 font-extrabold text-xs sm:text-base lg:text-lg leading-relaxed">
           Blind to <strong class="text-white font-black">religious affiliation, culture, or sex</strong>.
         </p>
       </div>
@@ -1074,8 +1131,49 @@ try {
 
   </div>
 </section>
+</main>
+<!-- FOOTER SECTION -->
+<footer class="w-full bg-slate-950 text-slate-300 rounded-t-2xl sm:rounded-t-3xl border-t-2 sm:border-t-4 border-slate-800 pt-10 pb-8 px-5 sm:px-10 lg:px-14 shadow-2xl mt-12 sm:mt-16">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-800/80">
+    
+    <!-- Branding / Institution Info -->
+    <div class="text-center md:text-left space-y-2">
+      <div class="flex items-center justify-center md:justify-start gap-3">
+        <span class="h-3 w-3 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="text-white font-black text-lg sm:text-xl tracking-tight uppercase">
+          Comboni Secondary & Preparatory School
+        </span>
+      </div>
+      <p class="text-slate-400 font-extrabold text-xs sm:text-sm">
+        Hawassa Vicariate Educational & Strategic Infrastructure Planning
+      </p>
+    </div>
 
-    </main>
+    <!-- System Developer Credit & Link -->
+    <div class="flex flex-col sm:flex-row items-center gap-3 bg-slate-900/90 border border-slate-800 hover:border-blue-500/50 p-3 sm:px-5 sm:py-3 rounded-xl sm:rounded-2xl transition-all duration-300 shadow-md">
+      <span class="text-slate-400 font-bold text-xs sm:text-sm">System Developer</span>
+      <span class="hidden sm:inline text-slate-700">|</span>
+      <a 
+        href="https://my-portfolio-two-wine-86.vercel.app/" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="inline-flex items-center gap-2 text-blue-400 hover:text-emerald-400 font-black text-sm sm:text-base tracking-wide transition-colors group"
+      >
+        <span>View Portfolio</span>
+        <svg class="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Copyright / Sub-footer -->
+  <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left text-[11px] sm:text-xs text-slate-500 font-bold gap-2">
+    <p>© 2026 Comboni Secondary School. All rights reserved.</p>
+    <p class="uppercase tracking-wider">Episcopal & Diocesan Asset Management</p>
+  </div>
+</footer>
 
   </body>
 </html>
