@@ -65,16 +65,31 @@ try {
 
       <!-- Functional Logout Button -->
       <button 
-        type="button"
-        id="logout-btn" 
-        class="px-5 sm:px-6 py-2.5 sm:py-3 bg-red-600 hover:bg-red-700 text-white font-black text-sm sm:text-base rounded-xl sm:rounded-2xl transition-all duration-200 shadow-lg border-2 border-red-400 hover:scale-105 flex items-center gap-2 shrink-0 cursor-pointer"
-      >
-        <span>Logout</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-        </svg>
-      </button>
+  type="button"
+  id="logout-btn" 
+  class="px-5 sm:px-6 py-2.5 sm:py-3 bg-red-600 hover:bg-red-700 text-white font-black text-sm sm:text-base rounded-xl sm:rounded-2xl transition-all duration-200 shadow-lg border-2 border-red-400 hover:scale-105 flex items-center gap-2 shrink-0 cursor-pointer"
+>
+  <span>Logout</span>
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+  </svg>
+</button>
+
+<script>
+  document.getElementById('logout-btn')?.addEventListener('click', async () => {
+    try {
+      // 1. Call the backend API to clear the session cookie
+      await fetch('/api/auth/signout', { method: 'POST' });
+    } catch (error) {
+      console.error('Signout request failed:', error);
+    } finally {
+      // 2. Force the browser navigation directly to avoid downloading the endpoint response
+      window.location.assign('/login');
+    }
+  });
+</script>
     </div>
+    
 
     <!-- Mobile Hamburger Button -->
     <button 
